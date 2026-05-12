@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fondo y Texto */
+  --color-bg-main: #ffffff;
+  --color-text-main: #000000;
+
+  /* Paleta de Pasteles (Mapeados para Tailwind 4) */
+  --color-pastel-blue-light: #DAF5F0;
+  --color-pastel-green-muted: #B5D2AD;
+  --color-pastel-yellow-pale: #FDFD96;
+  --color-pastel-orange-soft: #F8D6B3;
+  --color-pastel-pink-pale: #FCDFFF;
+  --color-pastel-purple-pale: #E3DFF2;
+
+  --color-pastel-teal: #A7DBD8;
+  --color-pastel-green-bright: #BAFCA2;
+  --color-pastel-yellow-warm: #FFDB58;
+  --color-pastel-orange: #FFA07A;
+  --color-pastel-pink: #FFC0CB;
+  --color-pastel-violet: #C4A1FF;
+
+  --color-pastel-sky: #87CEEB;
+  --color-pastel-green-grass: #90EE90;
+  --color-pastel-yellow-gold: #F4D738;
+  --color-pastel-coral: #FF7A5C;
+  --color-pastel-magenta: #FFB2EF;
+  --color-pastel-lavender: #A388EE;
+
+  --color-pastel-cyan: #69D2E7;
+  --color-pastel-green-forest: #7FBC8C;
+  --color-pastel-mustard: #E3A018;
+  --color-pastel-red-soft: #FF6B6B;
+  --color-pastel-hot-pink: #FF69B4;
+  --color-pastel-purple-deep: #9723C9;
+
+  /* Sombras Neobrutalistas */
+  --shadow-brutal: 4px 4px 0px 0px rgba(0,0,0,1);
+  --shadow-brutal-lg: 8px 8px 0px 0px rgba(0,0,0,1);
+  --shadow-brutal-xl: 12px 12px 0px 0px rgba(0,0,0,1);
+}
+
+/* Configuracion Base */
+@layer base {
+  body {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    /* El patrón de puntos */
+    background-image: radial-gradient(var(--color-text-main) 1px, transparent 1px);
+    background-size: 24px 24px;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Componentes Reutilizables */
+@layer components {
+  .brutal-card {
+    @apply border-4 border-black bg-white p-6 shadow-brutal-lg transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-xl;
+  }
+  
+  .brutal-btn {
+    @apply border-2 border-black px-4 py-2 font-black shadow-brutal active:shadow-none active:translate-x-1 active:translate-y-1 transition-all;
+  }
+}
