@@ -1,0 +1,41 @@
+---
+// src/icons/Heart.astro
+interface Props {
+  class?: string;
+  size?: string;
+  fill?: string;
+  strokeWidth?: string;
+}
+
+const { 
+  class: className, 
+  size = "48", 
+  fill = "#FF69B4", // Rosa por defecto
+  strokeWidth = "16"
+} = Astro.props;
+---
+
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  width={size} 
+  height={size} 
+  viewBox="0 0 256 256"
+  class={className}
+>
+  <rect width="256" height="256" fill="none"/>
+  <path 
+    d="M128,224S24,168,24,102A54,54,0,0,1,78,48c22.59,0,41.94,12.31,50,32,8.06-19.69,27.41-32,50-32a54,54,0,0,1,54,54C232,168,128,224,128,224Z" 
+    fill={fill} 
+    stroke="black" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    stroke-width={strokeWidth}
+  />
+</svg>
+
+<!-- <style>
+  svg {
+    /* Mantenemos la coherencia con el sombreado brutal */
+    filter: drop-shadow(3px 3px 0px black);
+  }
+</style> -->

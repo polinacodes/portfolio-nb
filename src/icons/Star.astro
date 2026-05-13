@@ -1,0 +1,38 @@
+---
+// src/icons/Star.astro
+interface Props {
+  class?: string;
+  size?: string;
+  fill?: string;
+}
+
+const { 
+  class: className, 
+  size = "100", 
+  fill = "#FFD700" // Amarillo sol por defecto
+} = Astro.props;
+---
+
+<svg 
+  width={size} 
+  height={size} 
+  viewBox="0 0 200 200" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+>
+  <path
+    d="m100 5 14.542 59.893 52.633-32.068-32.068 52.633L195 100l-59.893 14.542 32.068 52.633-52.633-32.068L100 195l-14.542-59.893-52.633 32.068 32.068-52.633L5 100l59.893-14.542-32.068-52.633 52.633 32.068L100 5z"
+    fill={fill}
+    stroke="black"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+</svg>
+
+<style>
+  svg {
+    /* Sombra brutal sólida */
+    filter: drop-shadow(5px 5px 0px black);
+  }
+</style>

@@ -1,0 +1,37 @@
+---
+// src/icons/Sparkle.astro
+interface Props {
+  class?: string;
+  size?: string;
+  fill?: string;
+}
+
+const { 
+  class: className, 
+  size = "60", 
+  fill = "#BAE6FD" // Un celeste pastel muy tech
+} = Astro.props;
+---
+
+<svg 
+  width={size} 
+  height={size} 
+  viewBox="0 0 200 200" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+>
+  <path
+    d="m100 5 25.659 69.341L195 100l-69.341 25.659L100 195l-25.659-69.341L5 100l69.341-25.659L100 5z"
+    fill={fill}
+    stroke="black"
+    stroke-width="8"
+    stroke-linejoin="round"
+  />
+</svg>
+
+<style>
+  svg {
+    filter: drop-shadow(4px 4px 0px black);
+  }
+</style>

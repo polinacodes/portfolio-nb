@@ -1,13 +1,17 @@
 ---
+// src/components/Hero.astro
+import { Image } from 'astro:assets';
+import HeartIcon from '../icons/Heart.astro';
+import avatarImg from '../assets/avatar.webp'; // Asegurate de que la ruta sea correcta
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section class="py-20 flex flex-col items-start gap-10">
-    <div class="w-full">
-        <h1 class="font-['Montserrat'] text-[80px] md:text-[120px] leading-[0.9] font-black uppercase mb-4">
+<section class="py-20 flex flex-col md:flex-row items-center gap-10 md:gap-20">
+    <div class="flex-1">
+        <h1 class="font-['Montserrat'] text-[80px] md:text-[100px] leading-[0.9] font-black uppercase mb-4">
             CREATIVE<br/>DEVELOPER
         </h1>
         <div class="inline-block bg-pastel-green-bright border-4 border-black p-6 shadow-brutal-lg mb-10 max-w-2xl">
@@ -17,26 +21,48 @@ const t = useTranslations(lang);
                 {t('hero.desc').split('PLANTHIA')[1]}
             </p>
         </div>
-    </div>
-    <div class="flex gap-6 flex-wrap">
-        <!-- <button class="bg-pastel-pink font-['Montserrat'] text-xl font-black uppercase border-4 border-black px-10 py-6 shadow-brutal active:translate-x-2 active:translate-y-2 active:shadow-none transition-all">
-            {t('hero.contact')}
-        </button> -->
-        <a 
-        href="#contact" 
-        class="bg-pastel-pink font-['Montserrat'] text-xl font-black uppercase border-4 border-black px-10 py-6 shadow-brutal hover:translate-x-2 hover:translate-y-2 hover:shadow-none active:scale-95 transition-all inline-block"
-    >
-        {t('hero.contact')}
-    </a>
-        <div class="flex items-center gap-2 px-6 border-4 border-black bg-white font-['JetBrains_Mono'] font-bold italic shadow-brutal">
-            <span class="material-symbols-outlined text-pastel-yellow-gold" 
-            style="
-            font-variation-settings: 'FILL' 1; 
-            paint-order: markers stroke fill;
-            -webkit-text-stroke: 1.5px black;
-            filter: drop-shadow(1px 1px 0px black);"
-            >bolt</span>
-            {t('hero.available')}
+
+        <div class="flex gap-6 flex-wrap">
+            <a href="#contact" class="bg-pastel-pink font-['Montserrat'] text-xl font-black uppercase border-4 border-black px-10 py-6 shadow-brutal hover:translate-x-2 hover:translate-y-2 hover:shadow-none transition-all inline-block">
+                {t('hero.contact')}
+            </a>
+            <div class="flex items-center gap-2 px-6 border-4 border-black bg-white font-['JetBrains_Mono'] font-bold italic shadow-brutal">
+                <span class="material-symbols-outlined text-pastel-yellow-gold" style="font-variation-settings: 'FILL' 1; paint-order: markers stroke fill; -webkit-text-stroke: 1.5px black; filter: drop-shadow(1px 1px 0px black);">bolt</span>
+                {t('hero.available')}
+            </div>
         </div>
+    </div>
+
+    <div class="relative">
+        <div class="absolute -top-6 right-2 flex gap-0 z-20">
+            <HeartIcon 
+                class="rotate-[0deg] hover:scale-110 transition-transform" 
+                size="40" 
+                fill="#BAE6FD" 
+            />
+            <HeartIcon 
+                class="rotate-[0deg] hover:scale-110 transition-transform" 
+                size="40" 
+                fill="#FEF08A" 
+            />
+            <HeartIcon 
+                class="rotate-[0deg] hover:scale-110 transition-transform" 
+                size="40" 
+                fill="#FFB7D5" 
+            />
+        </div>
+        <div class="bg-white border-4 border-black p-4 pb-12 shadow-brutal w-64 md:w-80">
+            <div class="border-2 border-black overflow-hidden bg-gray-100 aspect-square">
+                <Image 
+                    src={avatarImg} 
+                    alt="Polina's Avatar" 
+                    class="w-full h-full object-cover" 
+                />
+            </div>
+            <div class="mt-4 font-['JetBrains_Mono'] font-black text-center text-sm tracking-tighter ">
+                sakura_and_polina_codes.webp
+            </div>
+        </div>
+        <div class="absolute -bottom-10 -left-8 squiggly-line z-0 pointer-events-none"></div>
     </div>
 </section>

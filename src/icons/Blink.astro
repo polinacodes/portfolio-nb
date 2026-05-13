@@ -1,0 +1,38 @@
+---
+// src/icons/Blink.astro
+interface Props {
+  class?: string;
+  size?: string;
+  fill?: string;
+}
+
+const { 
+  class: className, 
+  size = "50", 
+  fill = "#C1FF72" // El verde de tu cursor para mantener la paleta
+} = Astro.props;
+---
+
+<svg 
+  width={size} 
+  height={size} 
+  viewBox="0 0 200 200" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg"
+  class={className}
+>
+  <path
+    d="M100 5s5.088 49.035 25.527 69.473C145.965 94.912 195 100 195 100s-49.035 5.088-69.473 25.527C105.088 145.965 100 195 100 195s-5.088-49.035-25.527-69.473C54.035 105.088 5 100 5 100s49.035-5.088 69.473-25.527C94.912 54.035 100 5 100 5"
+    fill={fill}
+    stroke="black"
+    stroke-width="8"
+    stroke-linejoin="round"
+  />
+</svg>
+
+<style>
+  svg {
+    /* Sombra sólida brutalista */
+    filter: drop-shadow(4px 4px 0px black);
+  }
+</style>

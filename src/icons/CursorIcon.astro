@@ -1,0 +1,23 @@
+---
+// src/icons/CursorIcon.astro
+const { class: className, size = "40", fill = "#C1FF72" } = Astro.props;
+---
+<svg 
+  width={size} 
+  height={size} 
+  viewBox="0 0 256 256" 
+  class={className}
+>
+  <path 
+    d="M152,152,234.35,129a8,8,0,0,0,.27-15.21l-176-65.28A8,8,0,0,0,48.46,58.63l65.28,176a8,8,0,0,0,15.21-.27Z" 
+    fill={fill} 
+    stroke="black" 
+    stroke-width="16" 
+    stroke-linecap="round" 
+    stroke-linejoin="round"
+  />
+</svg>
+
+<style>
+  svg { filter: drop-shadow(3px 3px 0px black); }
+</style>
