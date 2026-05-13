@@ -1,0 +1,38 @@
+---
+// src/components/Navbar.astro
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Lógica para el link del switch de idioma
+const switchTarget = lang === 'es' ? '/en/' : '/';
+const switchLabel = lang === 'es' ? 'EN' : 'ES';
+---
+
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-6 md:px-16 py-4 max-w-[1280px] mx-auto bg-white border-b-4 border-black shadow-brutal mt-4">
+    <div class="font-['Montserrat'] text-2xl font-black tracking-tighter">polinacodes</div>
+    
+    <nav class="hidden md:flex gap-8 items-center">
+        <a class="font-['Montserrat'] text-lg uppercase font-black hover:bg-pastel-blue-light transition-all px-2" href="#about">
+            {t('nav.about')}
+        </a>
+        <a class="font-['Montserrat'] text-lg uppercase font-black hover:bg-pastel-green-bright transition-all px-2" href="#skills">
+            {t('nav.skills')}
+        </a>
+        <a class="font-['Montserrat'] text-lg uppercase font-black hover:bg-pastel-yellow-gold transition-all px-2" href="#work">
+            {t('nav.projects')}
+        </a>
+        <a class="font-['Montserrat'] text-lg uppercase font-black hover:bg-pastel-pink transition-all px-2" href="#contact">
+            {t('nav.contact')}
+        </a>
+
+        <a href={switchTarget} class="ml-4 border-2 border-black px-2 py-1 font-black hover:bg-black hover:text-white transition-all text-sm">
+            {switchLabel}
+        </a>
+    </nav>
+
+    <button class="bg-pastel-yellow-gold font-['Montserrat'] font-black uppercase border-4 border-black px-6 py-2 shadow-brutal active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+        {t('nav.hire')}
+    </button>
+</header>
