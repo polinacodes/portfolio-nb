@@ -1,0 +1,29 @@
+---
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  es: {
+    title: "Sobre mí",
+    description: "Soy una desarrolladora Full Stack apasionada por crear soluciones digitales robustas y eficientes. Con un enfoque técnico preciso y una mentalidad orientada a resultados, transformo ideas complejas en arquitecturas escalables y experiencias de usuario impactantes. Mi compromiso es la excelencia técnica en cada línea de código."
+  },
+  en: {
+    title: "About me",
+    description: "I am a Full Stack developer passionate about creating robust and efficient digital solutions. With a precise technical focus and a results-oriented mindset, I transform complex ideas into scalable architectures and impactful user experiences. My commitment is technical excellence in every line of code."
+  }
+};
+
+const { title, description } = content[lang] || content.es;
+---
+
+<section class="py-20" id="about">
+  <div class="bg-pastel-blue-light border-4 border-black shadow-brutal p-10">
+    <h2 class="font-['Montserrat'] text-4xl md:text-5xl font-black uppercase mb-6 border-b-8 border-black inline-block">
+      {title}
+    </h2>
+    <p class="text-xl md:text-2xl font-medium max-w-4xl leading-relaxed">
+      {description}
+    </p>
+  </div>
+</section>
