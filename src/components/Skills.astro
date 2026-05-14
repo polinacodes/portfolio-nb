@@ -1,0 +1,58 @@
+---
+import { getLangFromUrl } from "../i18n/utils";
+import SkillsMarquee from "./SkillsMarquee.jsx"; 
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  es: { title: "Skills", subtitle: "Mi stack de herramientas favorito.", learning: "Aprendiendo: Seguridad Avanzada" },
+  en: { title: "Skills", subtitle: "My favorite tool stack.", learning: "Learning: Advanced Security" }
+};
+
+const { title, subtitle, learning } = content[lang] || content.es;
+
+const frontSkills = [
+
+  { name: "JS", color: "bg-pastel-yellow-warm", type: "front" },
+  { name: "TS", color: "bg-pastel-cyan", type: "front" },
+  { name: "React", color: "bg-pastel-blue-light", type: "front" },
+  { name: "Astro", color: "bg-white", type: "front" },
+  { name: "Next.js", color: "bg-pastel-teal", type: "front" },
+  { name: "Tailwind", color: "bg-pastel-cyan", type: "front" },
+];
+
+const backSkills = [
+  { name: "Node.js", color: "bg-pastel-green-bright", type: "back" },
+  { name: "Express", color: "bg-white", type: "back" },
+  { name: "Strapi", color: "bg-pastel-violet", type: "back" },
+  { name: "Java", color: "bg-pastel-orange-soft", type: "back" },
+  { name: "Spring", color: "bg-pastel-green-muted", type: "back" },
+  { name: "MongoDB", color: "bg-pastel-green-forest", type: "back" },
+  { name: "Postgres", color: "bg-pastel-blue-light", type: "back" },
+];
+---
+
+
+
+<section class="py-20 overflow-hidden" id="skills">
+  <div class="w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-4">
+        <h2 class="font-['Montserrat'] text-5xl font-black uppercase mb-4 border-b-8 border-black inline-block">
+          {title}
+        </h2>
+        <p class="text-xl font-bold mb-8 italic">{subtitle}</p>
+        <div class="p-4 bg-black text-white border-4 border-black shadow-brutal inline-block">
+          <span class="font-['JetBrains_Mono'] uppercase tracking-widest text-sm">{learning}</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-8 flex flex-col gap-6">
+        <SkillsMarquee skills={frontSkills} baseVelocity={-1} client:load />
+        <SkillsMarquee skills={backSkills} baseVelocity={1} client:load />
+      </div>
+      
+    </div>
+  </div>
+</section>
