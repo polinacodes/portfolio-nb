@@ -27,7 +27,7 @@ export default function SkillsMarquee({ skills, baseVelocity = 100 }) {
   });
 
   return (
-    <div className="overflow-hidden whitespace-nowrap flex flex-nowrap py-4 cursor-grab active:cursor-grabbing">
+    <div className="overflow-hidden whitespace-nowrap flex flex-nowrap py-4 cursor-[url('/hand.svg'),_pointer] active:cursor-[url('/hand.svg'),_grabbing]">
       <motion.div 
         className="flex gap-4 whitespace-nowrap" 
         style={{ x }}
