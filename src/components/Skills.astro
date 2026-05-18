@@ -2,43 +2,69 @@
 import { getLangFromUrl } from "../i18n/utils";
 import SkillsMarquee from "./SkillsMarquee.jsx"; 
 
+import HtmlIcon from "../icons/Html.astro";
+import CssIcon from "../icons/Css.astro";
+import JsIcon from "../icons/Javascript.astro";
+import TsIcon from "../icons/Typescript.astro";
+import ReactIcon from "../icons/React.astro";
+import NextIcon from "../icons/Next.astro";
+import AstroIcon from "../icons/AstroIcon.astro";
+import TailwindIcon from "../icons/Tailwind.astro";
+import BootstrapIcon from "../icons/Bootstrap.astro";
+
+import JavaIcon from "../icons/Java.astro";
+import NodeIcon from "../icons/Node.astro";
+import ExpressIcon from "../icons/Express.astro";
+import SpringIcon from "../icons/Spring.astro";
+import StrapiIcon from "../icons/Strapi.astro";
+import MongoIcon from "../icons/Mongo.astro";
+import PostgresIcon from "../icons/Postgre.astro";
+import MysqlIcon from "../icons/Mysql.astro";
+import GitIcon from "../icons/Git.astro";
+import BashIcon from "../icons/Bash.astro";
+import WordPressIcon from "../icons/Wordpress.astro";
+
 const lang = getLangFromUrl(Astro.url);
 
 const content = {
-  es: { title: "Skills", subtitle: "Mi stack de herramientas favorito.", learning: "Aprendiendo: Seguridad Avanzada" },
-  en: { title: "Skills", subtitle: "My favorite tool stack.", learning: "Learning: Advanced Security" }
+  es: { title: "Skills", subtitle: "Mi stack de lenguajes y herramientas.", learning: "Aprendiendo: Testing" },
+  en: { title: "Skills", subtitle: "My favorite tool stack.", learning: "Learning: Advanced Testing" }
 };
 
 const { title, subtitle, learning } = content[lang] || content.es;
 
 const frontSkills = [
-
-  { name: "JS", color: "bg-pastel-yellow-warm", type: "front" },
-  { name: "TS", color: "bg-pastel-cyan", type: "front" },
-  { name: "React", color: "bg-pastel-blue-light", type: "front" },
-  { name: "Astro", color: "bg-white", type: "front" },
-  { name: "Next.js", color: "bg-pastel-teal", type: "front" },
-  { name: "Tailwind", color: "bg-pastel-cyan", type: "front" },
+  { name: "HTML", Icon: HtmlIcon },
+  { name: "CSS", Icon: CssIcon },
+  { name: "JavaScript", Icon: JsIcon },
+  { name: "TypeScript", Icon: TsIcon },
+  { name: "React", Icon: ReactIcon },
+  { name: "Next.js", Icon: NextIcon },
+  { name: "Astro", Icon: AstroIcon  },
+  { name: "Tailwind", Icon: TailwindIcon },
+  { name: "Bootstrap", Icon: BootstrapIcon },
+  { name: "WordPress", Icon: WordPressIcon },
 ];
 
 const backSkills = [
-  { name: "Node.js", color: "bg-pastel-green-bright", type: "back" },
-  { name: "Express", color: "bg-white", type: "back" },
-  { name: "Strapi", color: "bg-pastel-violet", type: "back" },
-  { name: "Java", color: "bg-pastel-orange-soft", type: "back" },
-  { name: "Spring", color: "bg-pastel-green-muted", type: "back" },
-  { name: "MongoDB", color: "bg-pastel-green-forest", type: "back" },
-  { name: "Postgres", color: "bg-pastel-blue-light", type: "back" },
+  { name: "Java", Icon: JavaIcon },
+  { name: "Node.js", Icon: NodeIcon },
+  { name: "Express", Icon: ExpressIcon },
+  { name: "Spring Boot", Icon: SpringIcon },
+  { name: "Strapi", Icon: StrapiIcon },
+  { name: "MongoDB", Icon: MongoIcon },
+  { name: "PostgreSQL", Icon: PostgresIcon },
+  { name: "MySQL", Icon: MysqlIcon },
+  { name: "Git", Icon: GitIcon },
+  { name: "Bash", Icon: BashIcon },
 ];
 ---
-
-
 
 <section class="py-20 overflow-hidden" id="skills">
   <div class="w-full">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
       
-      <div class="lg:col-span-4">
+      <div class="lg:col-span-4 pl-4 lg:pl-8">
         <h2 class="font-['Montserrat'] text-5xl font-black uppercase mb-4 border-b-8 border-black inline-block">
           {title}
         </h2>
@@ -48,9 +74,34 @@ const backSkills = [
         </div>
       </div>
 
-      <div class="lg:col-span-8 flex flex-col gap-6">
-        <SkillsMarquee skills={frontSkills} baseVelocity={-1} client:load />
-        <SkillsMarquee skills={backSkills} baseVelocity={1} client:load />
+      <div class="lg:col-span-8 flex flex-col gap-8 w-full overflow-hidden">
+        
+        <SkillsMarquee  baseVelocity={-1} client:load>
+          {frontSkills.map((skill) => (
+            <div class="flex flex-col items-center justify-center gap-3 w-28 flex-shrink-0 select-none text-center group">
+              <div class="w-16 h-16 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                <skill.Icon />
+              </div>
+              <span class="font-['JetBrains_Mono'] font-bold text-xs uppercase tracking-wider text-black">
+                {skill.name}
+              </span>
+            </div>
+          ))}
+        </SkillsMarquee>
+
+        <SkillsMarquee baseVelocity={1} client:load>
+          {backSkills.map((skill) => (
+            <div class="flex flex-col items-center justify-center gap-3 w-28 flex-shrink-0 select-none text-center group">
+              <div class="w-16 h-16 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                <skill.Icon />
+              </div>
+              <span class="font-['JetBrains_Mono'] font-bold text-xs uppercase tracking-wider text-black">
+                {skill.name}
+              </span>
+            </div>
+          ))}
+        </SkillsMarquee>
+
       </div>
       
     </div>

@@ -1,20 +1,19 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useSpring, useScroll, useTransform, useVelocity, useAnimationFrame, useMotionValue } from "framer-motion";
 import { wrap } from "@motionone/utils";
 
-export default function SkillsMarquee({ skills, baseVelocity = 100 }) {
+export default function SkillsMarquee({ baseVelocity = 1, children }) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 400 });
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], { clamp: false });
 
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+  const x = useTransform(baseX, (v) => `${wrap(-50, 0, v)}%`);
 
   const directionFactor = useRef(1);
   useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
-
+    let moveBy = directionFactor.current * baseVelocity * 4 * (delta / 1000);
 
     if (velocityFactor.get() < 0) {
       directionFactor.current = -1;
@@ -27,31 +26,25 @@ export default function SkillsMarquee({ skills, baseVelocity = 100 }) {
   });
 
   return (
-    <div className="overflow-hidden whitespace-nowrap flex flex-nowrap py-4 cursor-[url('/hand.svg'),_pointer] active:cursor-[url('/hand.svg'),_grabbing]">
+    <div className="overflow-hidden whitespace-nowrap flex flex-nowrap py-2 cursor-[url('/hand.svg'),_pointer] active:cursor-[url('/hand.svg'),_grabbing]">
       <motion.div 
-        className="flex gap-4 whitespace-nowrap" 
+        className="flex gap-12 whitespace-nowrap" 
         style={{ x }}
         drag="x"
         onDrag={(e, info) => {
-          baseX.set(baseX.get() + info.delta.x * 0.05); 
+          baseX.set(baseX.get() + info.delta.x * 0.03); 
         }}
         onDragStart={() => (directionFactor.current = 0)}
         onDragEnd={(e, info) => {
           directionFactor.current = info.velocity.x > 0 ? 1 : -1;
         }}
       >
-    
-        {[...skills, ...skills, ...skills].map((skill, i) => (
-          <div 
-            key={i}
-            className={`w-32 h-32 flex-shrink-0 ${skill.color} border-4 border-black shadow-brutal flex flex-col items-center justify-center gap-2 select-none`}
-          >
-            <span className="material-symbols-outlined text-3xl text-black">
-              {skill.type === 'front' ? 'code' : 'database'}
-            </span>
-            <span className="font-['JetBrains_Mono'] font-black uppercase text-[10px]">{skill.name}</span>
-          </div>
-        ))}
+        <div className="flex gap-12 flex-shrink-0">
+          {children}
+        </div>
+        <div className="flex gap-12 flex-shrink-0" aria-hidden="true">
+          {children}
+        </div>
       </motion.div>
     </div>
   );
