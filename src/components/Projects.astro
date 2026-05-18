@@ -1,0 +1,211 @@
+---
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  es: { 
+    title: "Proyectos", 
+    viewProject: "Ver Proyecto",
+    projects: [
+      {
+        title: "Planthia",
+        category: "E-Commerce",
+        description: "Ecommerce headless de plantas con Next.js y Strapi. Arquitectura desacoplada con panel admin personalizado, gestión de inventario y checkout optimizado.",
+        tags: ["NEXT.JS", "STRAPI", "NODE.JS", "POSTGRESQL"],
+        image: "/public/projects/planthia.webp",
+        alt: "Panel de control de Planthia ecommerce",
+        align: "left",
+        bgColor: "bg-[#B5D2AD]",
+        hoverBtnClass: "hover:bg-secondary-container hover:text-on-background"
+      },
+      {
+        title: "ELMNT – Ecommerce Frontend",
+        category: "Desarrollo Frontend",
+        description: "Ecommerce minimalista de skincare con buscador inteligente, carrito funcional y panel admin con roles, construido con React y Tailwind CSS.",
+        tags: ["REACT", "TAILWIND CSS", "REACT ROUTER", "CONTEXT API"],
+        image: "/public/projects/elmnt.webp",
+        alt: "Interfaz del ecommerce de skincare ELMNT",
+        align: "right",
+        bgColor: "bg-[#A7DBD8]",
+        hoverBtnClass: "hover:bg-primary hover:text-on-primary"
+      },
+      {
+        title: "ELMNT - API REST Ecommerce",
+        category: "Desarrollo Backend",
+        description: "API REST escalable para ecommerce con autenticación JWT, acceso basado en roles e integración con MongoDB, construida con Node.js y Express.",
+        tags: ["NODE.JS", "EXPRESS", "MONGODB", "JWT"],
+        image: "/public/projects/elmnt-api.webp",
+        alt: "Diagrama de arquitectura de la API de ELMNT",
+        align: "left",
+        bgColor: "bg-[#E3F2FD]",
+        hoverBtnClass: "hover:bg-tertiary hover:text-on-primary"
+      },
+      {
+        title: "API REST Ecommerce – Java & Spring Boot",
+        category: "Desarrollo Backend",
+        description: "API RESTful para gestión de ecommerce con operaciones CRUD, arquitectura en capas y persistencia MySQL usando Spring Data JPA.",
+        tags: ["JAVA", "SPRING BOOT", "MYSQL", "JPA"],
+        image: "/public/projects/java.webp",
+        alt: "Ejemplo de código de API Java Spring Boot",
+        align: "right",
+        bgColor: "bg-[#F3E5F5]",
+        hoverBtnClass: "hover:bg-error hover:text-on-primary"
+      },
+      {
+        title: "Trailerflix API REST – Node.js & Express",
+        category: "Desarrollo Backend",
+        description: "API de gestión de contenido multimedia con filtrado complejo de datos, optimización de consultas y arquitectura MVC usando base de datos MySQL.",
+        tags: ["NODE.JS", "EXPRESS", "MYSQL", "MVC"],
+        image: "/public/projects/trailerflix.webp",
+        alt: "Gestión multimedia de la API Trailerflix",
+        align: "left",
+        bgColor: "bg-[#FFEBEE]",
+        hoverBtnClass: "hover:bg-error hover:text-on-primary"
+      },
+      // {
+      //   title: "API REST Mueblería – Node.js & Express",
+      //   category: "Desarrollo Backend",
+      //   description: "API de gestión de inventario para mueblería con operaciones CRUD completas y MongoDB para almacenamiento flexible del catálogo de productos.",
+      //   tags: ["NODE.JS", "EXPRESS", "MONGODB"],
+      //   image: "/public/projects/muebleria.webp",
+      //   alt: "Gestión de inventario de API de mueblería",
+      //   align: "right",
+      //   bgColor: "bg-[#E8F5E9]",
+      //   hoverBtnClass: "hover:bg-primary hover:text-on-primary"
+      // }
+    ]
+  },
+  en: { 
+    title: "Projects", 
+    viewProject: "View Project",
+    projects: [
+      {
+        title: "Planthia",
+        category: "E-Commerce",
+        description: "Headless plant ecommerce built with Next.js and Strapi. Decoupled architecture with custom admin panel, inventory management, and optimized checkout.",
+        tags: ["NEXT.JS", "STRAPI", "NODE.JS", "POSTGRESQL"],
+        image: "/public/projects/planthia.webp",
+        alt: "Planthia ecommerce dashboard",
+        align: "left",
+        bgColor: "bg-[#B5D2AD]",
+        hoverBtnClass: "hover:bg-secondary-container hover:text-on-background"
+      },
+      {
+        title: "ELMNT – Ecommerce Frontend",
+        category: "Frontend Development",
+        description: "Minimalist skincare ecommerce with smart search, functional cart, and role-based admin dashboard built with React and Tailwind CSS.",
+        tags: ["REACT", "TAILWIND CSS", "REACT ROUTER", "CONTEXT API"],
+        image: "/public/projects/elmnt.webp",
+        alt: "ELMNT skincare ecommerce interface",
+        align: "right",
+        bgColor: "bg-[#A7DBD8]",
+        hoverBtnClass: "hover:bg-primary hover:text-on-primary"
+      },
+      {
+        title: "ELMNT - Ecommerce REST API",
+        category: "Backend Development",
+        description: "Scalable REST API for ecommerce with JWT authentication, role-based access, and MongoDB integration built with Node.js and Express.",
+        tags: ["NODE.JS", "EXPRESS", "MONGODB", "JWT"],
+        image: "/public/projects/elmnt-api.webp",
+        alt: "ELMNT API architecture diagram",
+        align: "left",
+        bgColor: "bg-[#E3F2FD]",
+        hoverBtnClass: "hover:bg-tertiary hover:text-on-primary"
+      },
+      {
+        title: "Ecommerce REST API – Java & Spring Boot",
+        category: "Backend Development",
+        description: "RESTful API for ecommerce management with CRUD operations, layered architecture, and MySQL persistence using Spring Data JPA.",
+        tags: ["JAVA", "SPRING BOOT", "MYSQL", "JPA"],
+        image: "/public/projects/java.webp",
+        alt: "Java Spring Boot API code example",
+        align: "right",
+        bgColor: "bg-[#F3E5F5]",
+        hoverBtnClass: "hover:bg-error hover:text-on-primary"
+      },
+      {
+        title: "Trailerflix REST API – Node.js & Express",
+        category: "Backend Development",
+        description: "Multimedia content management API with complex data filtering, query optimization, and MVC architecture using MySQL database.",
+        tags: ["NODE.JS", "EXPRESS", "MYSQL", "MVC"],
+        image: "/public/projects/trailerflix.webp",
+        alt: "Trailerflix API multimedia management",
+        align: "left",
+        bgColor: "bg-[#FFEBEE]",
+        hoverBtnClass: "hover:bg-error hover:text-on-primary"
+      },
+      // {
+      //   title: "Furniture Store REST API – Node.js & Express",
+      //   category: "Backend Development",
+      //   description: "Inventory management API for a furniture store with complete CRUD operations and MongoDB for flexible product catalog storage.",
+      //   tags: ["NODE.JS", "EXPRESS", "MONGODB"],
+      //   image: "/public/projects/muebleria.webp",
+      //   alt: "Furniture store API inventory management",
+      //   align: "right",
+      //   bgColor: "bg-[#E8F5E9]",
+      //   hoverBtnClass: "hover:bg-primary hover:text-on-primary"
+      // }
+    ]
+  }
+};
+
+const { title, viewProject, projects } = content[lang] || content.es;
+---
+
+<section class="py-stack-lg mb-30" id="work">
+  <h2 class="font-['Montserrat'] text-5xl font-black uppercase mb-12 border-b-8 border-black inline-block">
+    {title}
+  </h2>
+  
+  <div class="flex flex-col gap-16">
+    {projects.map((project) => (
+      <div class="relative group">
+        
+        {/* Contenedor de la Imagen / Fondo del Proyecto */}
+        <div class="w-full bg-black border-4 border-black overflow-hidden aspect-[16/7] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+          <img 
+            class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" 
+            alt={project.alt} 
+            src={project.image}
+            loading="lazy"
+          />
+        </div>
+
+        {/* Tarjeta Flotante Informativa */}
+        <div class={`
+          md:absolute md:bottom-6 
+          ${project.align === 'left' ? 'md:left-6' : 'md:right-6'} 
+          md:max-w-md w-full ${project.bgColor} border-4 border-black p-6 mt-4 md:mt-0
+        `}>
+          <div class="bg-black text-white px-3 py-1 inline-block font-['JetBrains_Mono'] text-xs font-bold mb-3 uppercase tracking-wider">
+            {project.category}
+          </div>
+          
+          <h3 class="font-['Montserrat'] text-2xl font-black uppercase mb-2 text-black">
+            {project.title}
+          </h3>
+          
+          <p class="font-sans text-sm font-medium text-black/80 mb-4 leading-relaxed">
+            {project.description}
+          </p>
+          
+          {/* Tags de Tecnologías */}
+          <div class="flex flex-wrap gap-2 mb-6">
+            {project.tags.map((tag) => (
+              <span class="px-2 py-0.5 bg-white border-2 border-black font-['JetBrains_Mono'] font-bold text-[11px] text-black">
+                {tag}
+              </span>
+            ))}
+          </div>
+          
+          {/* Botón de Acción */}
+          <button class={`w-full flex items-center justify-center gap-2 bg-black text-white font-['Montserrat'] font-black text-lg uppercase border-4 border-black py-3 transition-colors ${project.hoverBtnClass}`}>
+            {viewProject} <span class="material-symbols-outlined text-xl">arrow_forward</span>
+          </button>
+        </div>
+
+      </div>
+    ))}
+  </div>
+</section>
