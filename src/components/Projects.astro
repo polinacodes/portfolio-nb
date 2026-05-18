@@ -10,7 +10,7 @@ const content = {
     projects: [
       {
         title: "Planthia",
-        category: "E-Commerce",
+        category: "Ecommerce",
         description: "Ecommerce headless de plantas con Next.js y Strapi. Arquitectura desacoplada con panel admin personalizado, gestión de inventario y checkout optimizado.",
         tags: ["NEXT.JS", "STRAPI", "NODE.JS", "POSTGRESQL"],
         image: "/public/projects/planthia.webp",
@@ -21,7 +21,7 @@ const content = {
       },
       {
         title: "ELMNT – Ecommerce Frontend",
-        category: "Desarrollo Frontend",
+        category: "Ecommerce",
         description: "Ecommerce minimalista de skincare con buscador inteligente, carrito funcional y panel admin con roles, construido con React y Tailwind CSS.",
         tags: ["REACT", "TAILWIND CSS", "REACT ROUTER", "CONTEXT API"],
         image: "/public/projects/elmnt.webp",
@@ -31,8 +31,8 @@ const content = {
         hoverBtnClass: "hover:bg-primary hover:text-on-primary"
       },
       {
-        title: "ELMNT - API REST Ecommerce",
-        category: "Desarrollo Backend",
+        title: "ELMNT - Ecommerce Backend",
+        category: "API REST",
         description: "API REST escalable para ecommerce con autenticación JWT, acceso basado en roles e integración con MongoDB, construida con Node.js y Express.",
         tags: ["NODE.JS", "EXPRESS", "MONGODB", "JWT"],
         image: "/public/projects/elmnt-api.webp",
@@ -42,8 +42,8 @@ const content = {
         hoverBtnClass: "hover:bg-tertiary hover:text-on-primary"
       },
       {
-        title: "API REST Ecommerce – Java & Spring Boot",
-        category: "Desarrollo Backend",
+        title: "Ecommerce – Java & Spring Boot",
+        category: "API REST",
         description: "API RESTful para gestión de ecommerce con operaciones CRUD, arquitectura en capas y persistencia MySQL usando Spring Data JPA.",
         tags: ["JAVA", "SPRING BOOT", "MYSQL", "JPA"],
         image: "/public/projects/java.webp",
@@ -53,8 +53,8 @@ const content = {
         hoverBtnClass: "hover:bg-error hover:text-on-primary"
       },
       {
-        title: "Trailerflix API REST – Node.js & Express",
-        category: "Desarrollo Backend",
+        title: "Trailerflix – Node.js & Express",
+        category: "API REST",
         description: "API de gestión de contenido multimedia con filtrado complejo de datos, optimización de consultas y arquitectura MVC usando base de datos MySQL.",
         tags: ["NODE.JS", "EXPRESS", "MYSQL", "MVC"],
         image: "/public/projects/trailerflix.webp",
@@ -82,7 +82,7 @@ const content = {
     projects: [
       {
         title: "Planthia",
-        category: "E-Commerce",
+        category: "Ecommerce",
         description: "Headless plant ecommerce built with Next.js and Strapi. Decoupled architecture with custom admin panel, inventory management, and optimized checkout.",
         tags: ["NEXT.JS", "STRAPI", "NODE.JS", "POSTGRESQL"],
         image: "/public/projects/planthia.webp",
@@ -93,7 +93,7 @@ const content = {
       },
       {
         title: "ELMNT – Ecommerce Frontend",
-        category: "Frontend Development",
+        category: "Ecommerce",
         description: "Minimalist skincare ecommerce with smart search, functional cart, and role-based admin dashboard built with React and Tailwind CSS.",
         tags: ["REACT", "TAILWIND CSS", "REACT ROUTER", "CONTEXT API"],
         image: "/public/projects/elmnt.webp",
@@ -103,8 +103,8 @@ const content = {
         hoverBtnClass: "hover:bg-primary hover:text-on-primary"
       },
       {
-        title: "ELMNT - Ecommerce REST API",
-        category: "Backend Development",
+        title: "ELMNT - Ecommerce Backend",
+        category: "REST API",
         description: "Scalable REST API for ecommerce with JWT authentication, role-based access, and MongoDB integration built with Node.js and Express.",
         tags: ["NODE.JS", "EXPRESS", "MONGODB", "JWT"],
         image: "/public/projects/elmnt-api.webp",
@@ -114,8 +114,8 @@ const content = {
         hoverBtnClass: "hover:bg-tertiary hover:text-on-primary"
       },
       {
-        title: "Ecommerce REST API – Java & Spring Boot",
-        category: "Backend Development",
+        title: "Ecommerce – Java & Spring Boot",
+        category: "REST API",
         description: "RESTful API for ecommerce management with CRUD operations, layered architecture, and MySQL persistence using Spring Data JPA.",
         tags: ["JAVA", "SPRING BOOT", "MYSQL", "JPA"],
         image: "/public/projects/java.webp",
@@ -125,8 +125,8 @@ const content = {
         hoverBtnClass: "hover:bg-error hover:text-on-primary"
       },
       {
-        title: "Trailerflix REST API – Node.js & Express",
-        category: "Backend Development",
+        title: "Trailerflix – Node.js & Express",
+        category: "REST API",
         description: "Multimedia content management API with complex data filtering, query optimization, and MVC architecture using MySQL database.",
         tags: ["NODE.JS", "EXPRESS", "MYSQL", "MVC"],
         image: "/public/projects/trailerflix.webp",
@@ -153,7 +153,7 @@ const content = {
 const { title, viewProject, projects } = content[lang] || content.es;
 ---
 
-<section class="py-stack-lg mb-30" id="work">
+<section class="py-stack-lg md:mb-30" id="work">
   <h2 class="font-['Montserrat'] text-5xl font-black uppercase mb-12 border-b-8 border-black inline-block">
     {title}
   </h2>
@@ -163,7 +163,7 @@ const { title, viewProject, projects } = content[lang] || content.es;
       <div class="relative group">
         
         {/* Contenedor de la Imagen / Fondo del Proyecto */}
-        <div class="w-full bg-black border-4 border-black overflow-hidden aspect-[16/7] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <div class="w-full bg-black border-4 border-black overflow-hidden aspect-[16/7] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
           <img 
             class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700" 
             alt={project.alt} 
@@ -176,7 +176,7 @@ const { title, viewProject, projects } = content[lang] || content.es;
         <div class={`
           md:absolute md:bottom-6 
           ${project.align === 'left' ? 'md:left-6' : 'md:right-6'} 
-          md:max-w-md w-full ${project.bgColor} border-4 border-black p-6 mt-4 md:mt-0
+          md:max-w-md w-full ${project.bgColor} border-4 border-black p-6 mt-1 md:mt-0
         `}>
           <div class="bg-black text-white px-3 py-1 inline-block font-['JetBrains_Mono'] text-xs font-bold mb-3 uppercase tracking-wider">
             {project.category}
