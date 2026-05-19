@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl } from "../i18n/utils";
+import ProjectModal from "./ProjectModal.astro";
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -7,61 +8,84 @@ const content = {
   es: { 
     title: "Proyectos", 
     viewProject: "Ver Proyecto",
+    codeBtn: "Código", 
+    siteBtn: "Sitio Web",
     projects: [
       {
+        id: "planthia",
         title: "Planthia",
         category: "Ecommerce",
         description: "Ecommerce headless de plantas con Next.js y Strapi. Arquitectura desacoplada con panel admin personalizado, gestión de inventario y checkout optimizado.",
+        longDescription: "Acá va el texto largo que me pediste con el scroll custom...",
         tags: ["NEXT.JS", "STRAPI", "NODE.JS", "POSTGRESQL"],
         image: "/public/projects/planthia.webp",
+        gallery: ["/projects/planthia.webp", "/projects/planthia-2.webp"], // Galería para el modal
         alt: "Panel de control de Planthia ecommerce",
         align: "left",
         bgColor: "bg-[#B5D2AD]",
-        hoverBtnClass: "hover:bg-secondary-container hover:text-on-background"
+        hoverBtnClass: "hover:bg-secondary-container hover:text-on-background",
+        github: "https://github.com/...",
+        live: "https://planthia.com"
       },
       {
+        id: "elmnt-frontend",
         title: "ELMNT – Ecommerce Frontend",
         category: "Ecommerce",
         description: "Ecommerce minimalista de skincare con buscador inteligente, carrito funcional y panel admin con roles, construido con React y Tailwind CSS.",
+        longDescription: "Plataforma de ecommerce de alta performance para una marca de skincare minimalista. El foco principal fue la experiencia de usuario (UX) y la arquitectura escalable, logrando una navegación fluida y tiempos de respuesta optimizados. Incluye flujo completo de compra: catálogo con detalle de producto, carrito funcional y checkout. Implementa un buscador inteligente con scroll adaptativo, panel de administración con CRUD protegido por autenticación y vistas basadas en roles con renderizado condicional. Arquitectura modular optimizada con Lazy Loading y Suspense, utilizando React Router DOM para navegación persistente y Context API para la gestión de estado, garantizando altos estándares en Web Vitals.",
         tags: ["REACT", "TAILWIND CSS", "REACT ROUTER", "CONTEXT API"],
         image: "/public/projects/elmnt.webp",
         alt: "Interfaz del ecommerce de skincare ELMNT",
         align: "right",
         bgColor: "bg-[#A7DBD8]",
-        hoverBtnClass: "hover:bg-primary hover:text-on-primary"
+        hoverBtnClass: "hover:bg-primary hover:text-on-primary",
+        github: "https://github.com",
+        live: "https://example.com"
       },
       {
+        id: "elmnt-backend",
         title: "ELMNT - Ecommerce Backend",
         category: "API REST",
         description: "API REST escalable para ecommerce con autenticación JWT, acceso basado en roles e integración con MongoDB, construida con Node.js y Express.",
+        longDescription: "Acá va el texto largo que me pediste con el scroll custom...",
         tags: ["NODE.JS", "EXPRESS", "MONGODB", "JWT"],
         image: "/public/projects/elmnt-api.webp",
         alt: "Diagrama de arquitectura de la API de ELMNT",
         align: "left",
         bgColor: "bg-[#E3F2FD]",
-        hoverBtnClass: "hover:bg-tertiary hover:text-on-primary"
+        hoverBtnClass: "hover:bg-tertiary hover:text-on-primary",
+        github: "https://github.com",
+        live: "https://example.com"
       },
       {
+        id: "ecommerce-java",
         title: "Ecommerce – Java & Spring Boot",
         category: "API REST",
         description: "API RESTful para gestión de ecommerce con operaciones CRUD, arquitectura en capas y persistencia MySQL usando Spring Data JPA.",
+        longDescription: "Acá va el texto largo que me pediste con el scroll custom...",
         tags: ["JAVA", "SPRING BOOT", "MYSQL", "JPA"],
         image: "/public/projects/java.webp",
         alt: "Ejemplo de código de API Java Spring Boot",
         align: "right",
         bgColor: "bg-[#F3E5F5]",
-        hoverBtnClass: "hover:bg-error hover:text-on-primary"
+        hoverBtnClass: "hover:bg-error hover:text-on-primary",
+        github: "https://github.com",
+        live: "https://example.com"
       },
       {
+        id: "trailerflix",
         title: "Trailerflix – Node.js & Express",
         category: "API REST",
         description: "API de gestión de contenido multimedia con filtrado complejo de datos, optimización de consultas y arquitectura MVC usando base de datos MySQL.",
+        longDescription: "Acá va el texto largo que me pediste con el scroll custom...",
         tags: ["NODE.JS", "EXPRESS", "MYSQL", "MVC"],
         image: "/public/projects/trailerflix.webp",
         alt: "Gestión multimedia de la API Trailerflix",
         align: "left",
         bgColor: "bg-[#FFEBEE]",
-        hoverBtnClass: "hover:bg-error hover:text-on-primary"
+        hoverBtnClass: "hover:bg-error hover:text-on-primary",
+        github: "https://github.com",
+        live: "https://example.com"
       },
       // {
       //   title: "API REST Mueblería – Node.js & Express",
@@ -79,61 +103,83 @@ const content = {
   en: { 
     title: "Projects", 
     viewProject: "View Project",
+    codeBtn: "Code",
+    siteBtn: "Live Site",
     projects: [
       {
+        id: "planthia",
         title: "Planthia",
         category: "Ecommerce",
         description: "Headless plant ecommerce built with Next.js and Strapi. Decoupled architecture with custom admin panel, inventory management, and optimized checkout.",
+        longDescription: "Acá va el texto largo que me pediste con el scroll custom...",
         tags: ["NEXT.JS", "STRAPI", "NODE.JS", "POSTGRESQL"],
         image: "/public/projects/planthia.webp",
         alt: "Planthia ecommerce dashboard",
         align: "left",
         bgColor: "bg-[#B5D2AD]",
-        hoverBtnClass: "hover:bg-secondary-container hover:text-on-background"
+        hoverBtnClass: "hover:bg-secondary-container hover:text-on-background",
+        github: "https://github.com",
+        live: "https://example.com"
       },
       {
+        id: "elmnt-frontend",
         title: "ELMNT – Ecommerce Frontend",
         category: "Ecommerce",
         description: "Minimalist skincare ecommerce with smart search, functional cart, and role-based admin dashboard built with React and Tailwind CSS.",
+        longDescription: "Acá va el texto largo que me pediste con el scroll custom...",
         tags: ["REACT", "TAILWIND CSS", "REACT ROUTER", "CONTEXT API"],
         image: "/public/projects/elmnt.webp",
         alt: "ELMNT skincare ecommerce interface",
         align: "right",
         bgColor: "bg-[#A7DBD8]",
-        hoverBtnClass: "hover:bg-primary hover:text-on-primary"
+        hoverBtnClass: "hover:bg-primary hover:text-on-primary",
+        github: "https://github.com",
+        live: "https://example.com"
       },
       {
+        id: "elmnt-backend",
         title: "ELMNT - Ecommerce Backend",
         category: "REST API",
         description: "Scalable REST API for ecommerce with JWT authentication, role-based access, and MongoDB integration built with Node.js and Express.",
+        longDescription: "Acá va el texto largo que me pediste con el scroll custom...",
         tags: ["NODE.JS", "EXPRESS", "MONGODB", "JWT"],
         image: "/public/projects/elmnt-api.webp",
         alt: "ELMNT API architecture diagram",
         align: "left",
         bgColor: "bg-[#E3F2FD]",
-        hoverBtnClass: "hover:bg-tertiary hover:text-on-primary"
+        hoverBtnClass: "hover:bg-tertiary hover:text-on-primary",
+        github: "https://github.com",
+        live: "https://example.com"
       },
       {
+        id: "ecommerce-java",
         title: "Ecommerce – Java & Spring Boot",
         category: "REST API",
         description: "RESTful API for ecommerce management with CRUD operations, layered architecture, and MySQL persistence using Spring Data JPA.",
+        longDescription: "Acá va el texto largo que me pediste con el scroll custom...",
         tags: ["JAVA", "SPRING BOOT", "MYSQL", "JPA"],
         image: "/public/projects/java.webp",
         alt: "Java Spring Boot API code example",
         align: "right",
         bgColor: "bg-[#F3E5F5]",
-        hoverBtnClass: "hover:bg-error hover:text-on-primary"
+        hoverBtnClass: "hover:bg-error hover:text-on-primary",  
+        github: "https://github.com",
+        live: "https://example.com"
       },
       {
+        id: "trailerflix",
         title: "Trailerflix – Node.js & Express",
         category: "REST API",
         description: "Multimedia content management API with complex data filtering, query optimization, and MVC architecture using MySQL database.",
+        longDescription: "Acá va el texto largo que me pediste con el scroll custom...",
         tags: ["NODE.JS", "EXPRESS", "MYSQL", "MVC"],
         image: "/public/projects/trailerflix.webp",
         alt: "Trailerflix API multimedia management",
         align: "left",
         bgColor: "bg-[#FFEBEE]",
-        hoverBtnClass: "hover:bg-error hover:text-on-primary"
+        hoverBtnClass: "hover:bg-error hover:text-on-primary",
+        github: "https://github.com",
+        live: "https://example.com"
       },
       // {
       //   title: "Furniture Store REST API – Node.js & Express",
@@ -150,7 +196,7 @@ const content = {
   }
 };
 
-const { title, viewProject, projects } = content[lang] || content.es;
+const { title, viewProject, codeBtn, siteBtn, projects } = content[lang] || content.es;
 ---
 
 <section class="py-stack-lg md:mb-30" id="work">
@@ -200,7 +246,7 @@ const { title, viewProject, projects } = content[lang] || content.es;
           </div>
           
           {/* Botón de Acción */}
-          <button class={`w-full flex items-center justify-center gap-2 bg-black text-white font-['Montserrat'] font-black text-lg uppercase border-4 border-black py-3 transition-colors ${project.hoverBtnClass}`}>
+          <button data-open-modal={project.id} class={`w-full flex items-center justify-center gap-2 bg-black text-white font-['Montserrat'] font-black text-lg uppercase border-4 border-black py-3 transition-colors ${project.hoverBtnClass}`}>
             {viewProject} <span class="material-symbols-outlined text-xl">arrow_forward</span>
           </button>
         </div>
@@ -209,3 +255,5 @@ const { title, viewProject, projects } = content[lang] || content.es;
     ))}
   </div>
 </section>
+
+<ProjectModal projects={projects} codeBtn={codeBtn} siteBtn={siteBtn} />

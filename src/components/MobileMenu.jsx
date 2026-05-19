@@ -32,7 +32,7 @@ export default function MobileMenu({ t, switchTarget, switchLabel }) {
           >
             <a onClick={toggleMenu} className="text-4xl font-black uppercase hover:bg-pastel-blue-light px-4" href="#about">{t.about}</a>
             <a onClick={toggleMenu} className="text-4xl font-black uppercase hover:bg-pastel-green-bright px-4" href="#skills">{t.skills}</a>
-            <a onClick={toggleMenu} className="text-4xl font-black uppercase hover:bg-pastel-yellow-gold px-4" href="#work">{t.projects}</a>
+            <a onClick={toggleMenu} className="text-4xl font-black uppercase hover:bg-pastel-lavender px-4" href="#work">{t.projects}</a>
             <a onClick={toggleMenu} className="text-4xl font-black uppercase hover:bg-pastel-pink px-4" href="#contact">{t.contact}</a>
           </motion.div>
         )}
