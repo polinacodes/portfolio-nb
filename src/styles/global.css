@@ -37,6 +37,7 @@
   --color-pastel-purple-deep: #9723C9;
 
   /* Sombras Neobrutalistas */
+  --shadow-brutal-mini: 2px 2px 0px 0px rgba(0,0,0,1);
   --shadow-brutal: 4px 4px 0px 0px rgba(0,0,0,1);
   --shadow-brutal-lg: 8px 8px 0px 0px rgba(0,0,0,1);
   --shadow-brutal-xl: 12px 12px 0px 0px rgba(0,0,0,1);

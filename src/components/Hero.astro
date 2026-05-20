@@ -3,6 +3,8 @@
 import { Image } from "astro:assets";
 import HeartIcon from "../icons/Heart.astro";
 import BoltIcon from "../icons/Bolt.astro";
+import GitHubIcon from "../icons/GitHub.astro"; 
+import LinkedInIcon from "../icons/LinkedIn.astro";
 import avatarImg from "../assets/avatar.webp";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
@@ -85,8 +87,29 @@ const t = useTranslations(lang);
         sakura_and_polina_codes.webp
       </div>
     </div>
+
+    <div class="absolute -bottom-12 left-0 flex gap-3 z-20">
+      <a 
+        href="https://github.com/polinacodes" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        class="w-10 h-10 bg-[#FFB7D5] text-black border-2 border-black rounded-full flex items-center justify-center p-1.5 shadow-brutal-mini hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150"
+      >
+        <GitHubIcon />
+      </a>
+      <a 
+        href="https://linkedin.com/in/polinacodes" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        class="w-10 h-10 bg-[#FFB7D5] text-black border-2 border-black rounded-full flex items-center justify-center p-1.5 shadow-brutal-mini hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-150"
+      >
+        <LinkedInIcon />
+      </a>
+    </div>
     <div
-      class="absolute -bottom-10 -left-8 squiggly-line z-0 pointer-events-none"
+      class="absolute -bottom-12 left-26 squiggly-line z-0 pointer-events-none"
     >
     </div>
   </div>
