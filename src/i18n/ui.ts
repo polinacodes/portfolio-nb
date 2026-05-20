@@ -6,7 +6,7 @@ export const languages = {
   export const ui = {
     es: {
       'head.title': 'Portfolio de Polinacodes | Full Stack Developer',
-      'nav.about': 'acerca',
+      'nav.about': 'sobre mí',
       'nav.skills': 'skills',
       'nav.projects': 'proyectos',
       'nav.contact': 'contacto',
@@ -21,7 +21,7 @@ export const languages = {
     },
     en: {
       'head.title': "Polinacodes' Portfolio | Full Stack Developer",  
-      'nav.about': 'about',
+      'nav.about': 'about me',
       'nav.skills': 'skills',
       'nav.projects': 'projects',
       'nav.contact': 'contact',
