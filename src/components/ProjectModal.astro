@@ -50,11 +50,11 @@ const { projects, codeBtn, siteBtn } = Astro.props;
           </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-4 pt-4 border-t-4 border-black">
-          <a id="modal-code-link" href="" target="_blank" class="flex items-center justify-center gap-2 bg-pastel-teal text-black border-4 border-black font-['Montserrat'] font-black text-sm uppercase py-3 hover:bg-black hover:text-white transition-colors">
+        <div class="flex gap-4 pt-4 border-t-4 border-black">
+          <a id="modal-code-link" href="" target="_blank" class="flex-1 flex items-center justify-center gap-2 bg-pastel-teal text-black border-4 border-black font-['Montserrat'] font-black text-sm uppercase py-3 hover:bg-black hover:text-white transition-colors">
             <div class="w-5 h-5"><GithubIcon /></div> {codeBtn}
           </a>
-          <a id="modal-live-link" href="" target="_blank" class="flex items-center justify-center gap-2 bg-pastel-light-indigo text-black border-4 border-black font-['Montserrat'] font-black text-sm uppercase py-3 hover:bg-black hover:text-white transition-colors">
+          <a id="modal-live-link" href="" target="_blank" class="flex-1 flex items-center justify-center gap-2 bg-pastel-light-indigo text-black border-4 border-black font-['Montserrat'] font-black text-sm uppercase py-3 hover:bg-black hover:text-white transition-colors">
             <div class="w-5 h-5"><WebsiteIcon /></div> {siteBtn}
           </a>
         </div>
@@ -102,8 +102,28 @@ const { projects, codeBtn, siteBtn } = Astro.props;
       mCategory.textContent = project.category;
       mLongDesc.textContent = project.longDescription || project.description;
       mMainImg.src = project.gallery?.[0] || project.image;
-      mCodeLink.href = project.github || '#';
-      mLiveLink.href = project.live || '#';
+      
+      if (project.github) {
+        mCodeLink.style.display = 'flex';
+        mCodeLink.onclick = (e) => {
+          e.preventDefault(); 
+          window.open(project.github, '_blank', 'noopener,noreferrer');
+        };
+      } else {
+        mCodeLink.style.display = 'none';
+        mCodeLink.onclick = null;
+      }
+
+      if (project.live) {
+        mLiveLink.style.display = 'flex';
+        mLiveLink.onclick = (e) => {
+          e.preventDefault(); 
+          window.open(project.live, '_blank', 'noopener,noreferrer');
+        };
+      } else {
+        mLiveLink.style.display = 'none';
+        mLiveLink.onclick = null;
+      }
 
       mThumbnails.innerHTML = '';
       if (project.gallery?.length > 1) {
