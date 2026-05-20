@@ -11,7 +11,7 @@ interface Props {
 const { projects, codeBtn, siteBtn } = Astro.props;
 ---
 
-<dialog id="project-modal" class="backdrop:bg-black/80 backdrop:backdrop-blur-sm p-4 bg-transparent max-w-5xl w-full fixed inset-0 m-auto max-h-[95vh] overflow-y-auto md:overflow-visible focus:outline-none">
+<dialog id="project-modal" class="backdrop:bg-black/80 backdrop:backdrop-blur-sm p-4 bg-transparent max-w-5xl 2xl:max-w-7xl  w-full fixed inset-0 m-auto max-h-[95vh] overflow-y-auto md:overflow-visible focus:outline-none">
   <div class="w-full bg-white border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative flex flex-col my-auto">
     
     <button id="close-modal-btn" class="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-[#FF8A8A] text-black border-4 border-black font-['Montserrat'] font-black text-xl w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:bg-red-500 transition-colors z-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 active:shadow-none">
@@ -44,7 +44,7 @@ const { projects, codeBtn, siteBtn } = Astro.props;
           <h3 id="modal-title" class="font-['Montserrat'] text-3xl font-black uppercase mb-4 text-black leading-tight">
           </h3>
           
-          <div class="max-h-40 md:max-h-60 overflow-y-auto pr-2 mb-6 scrollbar-custom">
+          <div class="max-h-40 md:max-h-60 2xl:max-h-[300px] overflow-y-auto pr-2 mb-6 scrollbar-custom">
             <p id="modal-long-description" class="font-sans text-sm font-medium text-black/80 leading-relaxed">
             </p>
           </div>
