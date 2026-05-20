@@ -1,0 +1,79 @@
+---
+// src/components/Contact.astro
+import { getLangFromUrl } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  es: {
+    title: "¡Trabajemos juntos!",
+    subtitle: "¿Listo para crear algo increíble? Conversemos.",
+    labelName: "Nombre",
+    phName: "TU NOMBRE",
+    labelEmail: "Email",
+    phEmail: "TU EMAIL",
+    labelMessage: "Mensaje",
+    phMessage: "¿QUÉ TENÉS EN MENTE?",
+    btnSend: "ENVIAR"
+  },
+  en: {
+    title: "Let's work together!",
+    subtitle: "Ready to build something amazing? Let's talk.",
+    labelName: "Name",
+    phName: "YOUR NAME",
+    labelEmail: "Email",
+    phEmail: "YOUR EMAIL",
+    labelMessage: "Message",
+    phMessage: "WHAT DO YOU HAVE IN MIND?",
+    btnSend: "SEND"
+  }
+};
+
+const { title, subtitle, labelName, phName, labelEmail, phEmail, labelMessage, phMessage, btnSend } = content[lang] || content.es;
+---
+
+<section class="py-20 mt-20 text-center" id="contact">
+  <div class="max-w-3xl mx-auto border-4 border-black p-6 md:p-10 bg-pastel-lavender shadow-brutal-xl">
+    <h2 class="font-['Montserrat'] text-3xl md:text-5xl font-black uppercase mb-4">
+      {title}
+    </h2>
+    <p class="text-xl font-bold mb-10">
+      {subtitle}
+    </p>
+    <form class="space-y-6 text-left">
+      <div class="flex flex-col gap-2">
+        <label class="font-['Montserrat'] font-black uppercase text:lg md:text-xl">{labelName}</label>
+        <input
+          class="bg-white border-4 border-black p-4 font-bold focus:bg-pastel-pink-pale outline-none transition-all shadow-brutal-sm"
+          placeholder={phName}
+          type="text"
+          required
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label class="font-['Montserrat'] font-black uppercase text:lg md:text-xl">{labelEmail}</label>
+        <input
+          class="bg-white border-4 border-black p-4 font-bold focus:bg-pastel-pink-pale outline-none transition-all shadow-brutal-sm"
+          placeholder={phEmail}
+          type="email"
+          required
+        />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label class="font-['Montserrat'] font-black uppercase text:lg md:text-xl">{labelMessage}</label>
+        <textarea
+          class="bg-white border-4 border-black p-4 font-bold focus:bg-pastel-pink-pale outline-none transition-all shadow-brutal-sm"
+          placeholder={phMessage}
+          rows="4"
+          required
+        ></textarea>
+      </div>
+      <button
+        class="w-full bg-[#000] font-['Montserrat'] text-lg md:text-2xl font-black text-white uppercase border-4 border-black py-6 shadow-brutal hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+        type="submit"
+      >
+        {btnSend}
+      </button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+---
+// src/pages/en/index.astro
+import "../../styles/global.css"; // Ojo acá: sube un nivel más por la carpeta /en/
+import Navbar from "../../components/Navbar.astro";
+import Hero from "../../components/Hero.astro";
+import About from "../../components/About.astro";
+import Skills from "../../components/Skills.astro";
+import Projects from "../../components/Projects.astro";
+import Contact from "../../components/Contact.astro";
+import Footer from "../../components/Footer.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+// 1. Si usás SSG, le avisamos a Astro que procese el idioma 'en' para esta ruta estática
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } }
+  ];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@600"
+      rel="stylesheet"
+    />
+    <title>{t("head.title")}</title>
+  </head>
+  <body class="bg-white text-black font-['Geist'] antialiased">
+    <Navbar />
+
+    <main class="max-w-[1280px] mx-auto px-6 md:px-16">
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Contact />
+    </main>
+    <Footer />
+  </body>
+</html>
