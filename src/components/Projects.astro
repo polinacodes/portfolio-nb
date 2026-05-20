@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl } from "../i18n/utils";
 import ProjectModal from "./ProjectModal.astro";
+import ArrowForward from "../icons/ArrowForward.astro";
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -115,6 +116,7 @@ const content = {
         longDescription: "Planthia E-commerce is a high-performance digital store specialized in selling indoor and outdoor plants along with botanical care accessories. The core of the project involved developing a smooth, modern, and highly responsive shopping platform, prioritizing a clean and minimalist user experience aligned with current digital market standards. On a technical level, development focused on achieving a decoupled and efficient architecture that handles real-time stock synchronization, shopping cart persistence, and critical post-purchase communication with customers. The frontend was built using Next.js, leveraging its modern routing and hybrid rendering to ensure instantaneous product pages, native image optimization, and flawless SEO indexing across the entire catalog. As a backend and headless CMS, Strapi CMS was custom-configured to centrally manage plant inventory, categories, price variants, purchase orders, and essential product data, backed by a robust and relational PostgreSQL database that maintains transactional integrity. For mailing automation, a complete integration of workflows was achieved using Resend to process immediate notifications such as purchase confirmations, shipping details, subscription newsletters, and credential delivery. Key technical challenges resolved include implementing an asynchronous webhook system between Strapi and Resend to trigger dynamic confirmation emails at the exact moment a purchase is processed, complex data modeling to control live plant stock and prevent overselling during high-traffic spikes, and adhering to strict web security practices by isolating critical environment variables via secure server-side calls.",
         tags: ["NEXT.JS", "STRAPI", "NODE.JS", "POSTGRESQL"],
         image: "/public/projects/planthia.webp",
+         gallery: ["/public/projects/planthia-1.webp", "/public/projects/planthia-2.webp", "/public/projects/planthia-3.webp", "/public/projects/planthia-4.webp", "/public/projects/planthia-5.webp", "/public/projects/planthia-6.webp"], 
         alt: "Planthia ecommerce dashboard",
         align: "left",
         bgColor: "bg-[#B5D2AD]",
@@ -130,6 +132,7 @@ const content = {
         longDescription: "High-performance ecommerce platform for a minimalist skincare brand. Focused on user experience (UX) and scalable architecture, achieving fluid navigation and optimized response times. Includes full shopping flow: catalog with product details, functional cart, and checkout. Features a smart search with adaptive scroll, an auth-protected admin dashboard with CRUD operations, and role-based views. Modular architecture optimized with Lazy Loading and Suspense, using React Router DOM for persistent navigation and Context API for state management, ensuring high Web Vitals standards.",
         tags: ["REACT", "TAILWIND CSS", "REACT ROUTER", "CONTEXT API"],
         image: "/public/projects/elmnt.webp",
+        gallery: ["/public/projects/elmnt-1.webp", "/public/projects/elmnt-2.webp", "/public/projects/elmnt-3.webp", "/public/projects/elmnt-4.webp", "/public/projects/elmnt-5.webp", "/public/projects/elmnt-6.webp"],
         alt: "ELMNT skincare ecommerce interface",
         align: "right",
         bgColor: "bg-[#A7DBD8]",
@@ -248,7 +251,10 @@ const { title, viewProject, codeBtn, siteBtn, projects } = content[lang] || cont
           
           {/* Botón de Acción */}
           <button data-open-modal={project.id} class={`w-full flex items-center justify-center gap-2 bg-black text-white font-['Montserrat'] font-black text-lg uppercase border-4 border-black py-3 transition-colors ${project.hoverBtnClass}`}>
-            {viewProject} <span class="material-symbols-outlined text-xl">arrow_forward</span>
+            {viewProject} 
+            <div class="w-5 h-5 transition-transform group-hover:translate-x-1">
+              <ArrowForward />
+            </div>
           </button>
         </div>
 
