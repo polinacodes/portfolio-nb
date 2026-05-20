@@ -14,7 +14,7 @@ const t = useTranslations(lang);
 ---
 
 <!doctype html>
-<html lang={lang} class="scroll-smooth overflow-x-hidden">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -25,16 +25,18 @@ const t = useTranslations(lang);
     <title>{t("head.title")}</title>
   </head>
   
-  <body class="min-h-[100dvh] flex flex-col bg-white text-black font-['Geist'] antialiased overflow-x-hidden">
+  <body class="min-h-[100dvh] flex flex-col bg-white text-black font-['Geist'] antialiased">
     <Navbar />
 
-    <main class="flex-grow w-full max-w-[1280px] mx-auto px-6 md:px-16">
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
-    </main>
+    <div class="w-full overflow-x-hidden flex-grow">
+      <main class="max-w-[1280px] mx-auto px-6 md:px-16">
+        <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
+    </div>
     
     <Footer />
   </body>
