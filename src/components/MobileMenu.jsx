@@ -55,7 +55,7 @@ export default function MobileMenu({ t, switchTarget, switchLabel }) {
             
             <a 
               onClick={toggleMenu} 
-              className="text-3xl font-black uppercase bg-pastel-green-muted border-4 border-black w-64 py-3 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all" 
+              className="text-3xl font-black uppercase bg-pastel-light-indigo border-4 border-black w-64 py-3 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all" 
               href="#skills"
             >
               {t.skills}
@@ -63,7 +63,7 @@ export default function MobileMenu({ t, switchTarget, switchLabel }) {
             
             <a 
               onClick={toggleMenu} 
-              className="text-3xl font-black uppercase bg-pastel-light-indigo border-4 border-black w-64 py-3 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all" 
+              className="text-3xl font-black uppercase bg-pastel-yellow-secondary border-4 border-black w-64 py-3 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all" 
               href="#work"
             >
               {t.projects}
