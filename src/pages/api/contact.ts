@@ -30,6 +30,7 @@ export const POST: APIRoute = async ({ request }) => {
     const { error } = await resend.emails.send({
       from: 'Portfolio <hola@polinacodes.dev>',
       to: 'hola@polinacodes.dev',
+      replyTo: email,
       subject: `Nuevo mensaje de ${name} [Portfolio]`,
       html: `
         <div style="font-family: sans-serif; padding: 20px; border: 4px solid black; background: #FAF5FF;">
