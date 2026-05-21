@@ -2,6 +2,7 @@
 import { getLangFromUrl } from "../i18n/utils";
 import ProjectModal from "./ProjectModal.astro";
 import ArrowForward from "../icons/ArrowForward.astro";
+import StarSection from "../icons/StarSection.jsx";
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -23,7 +24,7 @@ const content = {
         gallery: ["/public/projects/planthia-1.webp", "/public/projects/planthia-2.webp", "/public/projects/planthia-3.webp", "/public/projects/planthia-4.webp", "/public/projects/planthia-5.webp", "/public/projects/planthia-6.webp"], 
         alt: "Panel de control de Planthia ecommerce",
         align: "left",
-        bgColor: "bg-[#B5D2AD]",
+        bgColor: "bg-pastel-green-muted",
         hoverBtnClass: "hover:bg-secondary-container hover:text-on-background",
         github: "https://github.com/...",
         live: "https://planthia.com"
@@ -39,7 +40,7 @@ const content = {
         gallery: ["/public/projects/elmnt-1.webp", "/public/projects/elmnt-2.webp", "/public/projects/elmnt-3.webp", "/public/projects/elmnt-4.webp", "/public/projects/elmnt-5.webp", "/public/projects/elmnt-6.webp"],
         alt: "Interfaz del ecommerce de skincare ELMNT",
         align: "right",
-        bgColor: "bg-[#A7DBD8]",
+        bgColor: "bg-pastel-teal",
         hoverBtnClass: "hover:bg-primary hover:text-on-primary",
         github: "https://github.com/polinacodes/elmnt-ecommerce",
         live: "https://elmnt-skincare.vercel.app/"
@@ -55,7 +56,7 @@ const content = {
         gallery: ["/public/projects/elmnt-api-1.webp"],
         alt: "Diagrama de arquitectura de la API de ELMNT",
         align: "left",
-        bgColor: "bg-[#E3F2FD]",
+        bgColor: "bg-pastel-light-indigo",
         hoverBtnClass: "hover:bg-tertiary hover:text-on-primary",
         github: "https://github.com/polinacodes/elmnt-api",
         // live: "https://example.com"
@@ -71,7 +72,7 @@ const content = {
         gallery: ["/public/projects/java-1.webp"],
         alt: "Ejemplo de código de API Java Spring Boot",
         align: "right",
-        bgColor: "bg-[#F3E5F5]",
+        bgColor: "bg-pastel-yellow-secondary",
         hoverBtnClass: "hover:bg-error hover:text-on-primary",
         github: "https://github.com/polinacodes/proyecto-integrador",
         // live: "https://example.com"
@@ -87,7 +88,7 @@ const content = {
         gallery: ["/public/projects/trailerflix-1.webp"],
         alt: "Gestión multimedia de la API Trailerflix",
         align: "left",
-        bgColor: "bg-[#FFEBEE]",
+        bgColor: "bg-pastel-pink-pale",
         hoverBtnClass: "hover:bg-error hover:text-on-primary",
         github: "https://github.com/polinacodes/trailerflix",
         // live: "https://example.com"
@@ -122,7 +123,7 @@ const content = {
          gallery: ["/public/projects/planthia-1.webp", "/public/projects/planthia-2.webp", "/public/projects/planthia-3.webp", "/public/projects/planthia-4.webp", "/public/projects/planthia-5.webp", "/public/projects/planthia-6.webp"], 
         alt: "Planthia ecommerce dashboard",
         align: "left",
-        bgColor: "bg-[#B5D2AD]",
+        bgColor: "bg-pastel-green-muted",
         hoverBtnClass: "hover:bg-secondary-container hover:text-on-background",
         github: "https://github.com",
         live: "https://example.com"
@@ -138,7 +139,7 @@ const content = {
         gallery: ["/public/projects/elmnt-1.webp", "/public/projects/elmnt-2.webp", "/public/projects/elmnt-3.webp", "/public/projects/elmnt-4.webp", "/public/projects/elmnt-5.webp", "/public/projects/elmnt-6.webp"],
         alt: "ELMNT skincare ecommerce interface",
         align: "right",
-        bgColor: "bg-[#A7DBD8]",
+        bgColor: "bg-pastel-teal",
         hoverBtnClass: "hover:bg-primary hover:text-on-primary",
         github: "https://github.com/polinacodes/elmnt-ecommerce",
         live: "https://elmnt-skincare.vercel.app/"
@@ -154,7 +155,7 @@ const content = {
         gallery: ["/public/projects/elmnt-api-1.webp"],
         alt: "ELMNT API architecture diagram",
         align: "left",
-        bgColor: "bg-[#E3F2FD]",
+        bgColor: "bg-pastel-light-indigo",
         hoverBtnClass: "hover:bg-tertiary hover:text-on-primary",
         github: "https://github.com/polinacodes/elmnt-api",
         live: "https://elmnt-skincare.vercel.app/"
@@ -170,7 +171,7 @@ const content = {
         gallery: ["/public/projects/java-1.webp"],
         alt: "Java Spring Boot API code example",
         align: "right",
-        bgColor: "bg-[#F3E5F5]",
+        bgColor: "bg-pastel-yellow-secondary",
         hoverBtnClass: "hover:bg-error hover:text-on-primary",  
         github: "https://github.com/polinacodes/proyecto-integrador",
         // live: "https://example.com"
@@ -186,7 +187,7 @@ const content = {
         gallery: ["/public/projects/trailerflix-1.webp"],
         alt: "Trailerflix API multimedia management",
         align: "left",
-        bgColor: "bg-[#FFEBEE]",
+        bgColor: "bg-pastel-pink-pale",
         hoverBtnClass: "hover:bg-error hover:text-on-primary",
         github: "https://github.com/polinacodes/trailerflix",
         // live: "https://example.com"
@@ -210,9 +211,20 @@ const { title, viewProject, codeBtn, siteBtn, projects } = content[lang] || cont
 ---
 
 <section class="py-stack-lg md:mb-30" id="work">
-  <h2 class="font-['Montserrat'] text-5xl font-black uppercase mb-12 border-b-8 border-black inline-block">
+  <!-- <h2 class="font-['Montserrat'] text-4xl md:text-5xl font-black uppercase mb-12 border-b-8 border-black inline-block">
     {title}
-  </h2>
+  </h2> -->
+
+  <div class="flex items-center gap-4 mb-12">
+    <StarSection
+      client:visible
+      fillColor="#FFDB58" 
+      className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16"
+    />
+    <h2 class="font-['Montserrat'] text-4xl md:text-5xl font-black uppercase border-b-8 border-black inline-block m-0 p-0 leading-none">
+      {title}
+    </h2>
+  </div>
   
   <div class="flex flex-col gap-16">
     {projects.map((project) => (

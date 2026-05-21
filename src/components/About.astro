@@ -1,27 +1,39 @@
 ---
 import { getLangFromUrl } from "../i18n/utils";
+import StarSection from "../icons/StarSection.jsx";
 
 const lang = getLangFromUrl(Astro.url);
-
 const content = {
   es: {
     title: "Sobre mí",
-    description: "Soy una desarrolladora Full Stack apasionada por crear soluciones digitales robustas y eficientes. Con un enfoque técnico preciso y una mentalidad orientada a resultados, transformo ideas complejas en arquitecturas escalables y experiencias de usuario impactantes. Mi compromiso es la excelencia técnica en cada línea de código."
+    description:
+      "Como desarrolladora web Fullstack, me enfoco en crear aplicaciones donde el rendimiento, la seguridad y la fluidez visual conviven en armonía. No elijo entre un backend sólido o una interfaz atractiva; me apasiona conectar ambos mundos. Construyo arquitecturas limpias y protegidas desde la base, prestando máxima atención al detalle estético y optimizando cada interacción para ofrecer una experiencia de usuario impecable.",
   },
   en: {
     title: "About me",
-    description: "I am a Full Stack developer passionate about creating robust and efficient digital solutions. With a precise technical focus and a results-oriented mindset, I transform complex ideas into scalable architectures and impactful user experiences. My commitment is technical excellence in every line of code."
-  }
+    description:
+      "As a Fullstack web developer, I focus on building applications where performance, security, and visual fluidity live in harmony. I don't choose between a robust backend or an attractive interface; I love connecting both worlds. I build clean, secure architectures from the ground up, paying close attention to aesthetic detail and optimizing every interaction for a flawless user experience.",
+  },
 };
-
 const { title, description } = content[lang] || content.es;
 ---
 
-<section class="py-20" id="about">
-  <div class="bg-pastel-teal border-4 border-black shadow-brutal-lg p-10">
-    <h2 class="font-['Montserrat'] text-4xl md:text-5xl font-black uppercase mb-6 border-b-8 border-black inline-block">
+<section class="mt-24 py-0 md:py-20" id="about">
+  <div class="flex items-center gap-3 mb-8">
+    <StarSection
+      client:visible
+      fillColor="#FF69B4"
+      className="flex-shrink-0 w-12 h-12 md:w-16 md:h-16"
+    />
+
+    <h2
+      class="font-['Montserrat'] text-4xl md:text-5xl font-black uppercase border-b-8 border-black inline-block m-0"
+    >
       {title}
     </h2>
+  </div>
+
+  <div class="bg-pastel-teal border-4 border-black shadow-brutal-lg p-10">
     <p class="text-xl md:text-2xl font-medium max-w-4xl leading-relaxed">
       {description}
     </p>
