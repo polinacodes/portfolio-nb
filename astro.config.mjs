@@ -1,12 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
-
 import react from '@astrojs/react';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'server',
+
   vite: {
     plugins: [tailwindcss()]
   },
@@ -15,9 +16,10 @@ export default defineConfig({
     defaultLocale: 'es',
     locales: ['es', 'en'],
     routing: {
-      prefixDefaultLocale: false // 'es' en la raíz, 'en' en /en/
+      prefixDefaultLocale: false 
     }
   },
 
-  integrations: [react()]
+  integrations: [react()],
+  adapter: vercel()
 });
