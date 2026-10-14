@@ -3,7 +3,7 @@
 
 Sitio web institucional y portfolio profesional desarrollado con Astro, React y Tailwind CSS. El proyecto está diseñado bajo una estética neobrutalista, priorizando la optimización de rendimiento, la modularidad de los componentes y el soporte nativo multiidioma.
 
-[![Sitio Web](https://img.shields.io/badge/SITIO_WEB-polinacodes.dev-black?style=for-the-badge)](https://portfolio.polinacodes.dev)
+[![Sitio Web](https://img.shields.io/badge/SITIO_WEB-portfolio.polinacodes.dev-black?style=for-the-badge)](https://portfolio.polinacodes.dev)
 
 ## Características Técnicas
 
