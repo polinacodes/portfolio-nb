@@ -13,7 +13,7 @@ export default function MobileMenu({ t, switchTarget, switchLabel }) {
         <a href={switchTarget} className="border-2 border-black px-2 py-1 font-black text-sm hover:bg-black hover:text-white transition-all">
           {switchLabel}
         </a>
-        <button onClick={toggleMenu} className="flex flex-col gap-1.5 z-[70]">
+        <button onClick={toggleMenu} aria-label={t.open} aria-expanded={isOpen} className="flex flex-col gap-1.5 z-[70]">
           <div className="w-8 h-1.5 bg-black"></div>
           <div className="w-8 h-1.5 bg-black"></div>
           <div className="w-8 h-1.5 bg-black"></div>

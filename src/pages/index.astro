@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 export const prerender = true;
+import montserrat800 from "@fontsource/montserrat/files/montserrat-latin-800-normal.woff2?url";
+import montserrat900 from "@fontsource/montserrat/files/montserrat-latin-900-normal.woff2?url";
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
@@ -20,10 +22,8 @@ const t = useTranslations(lang);
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta name="description" content="Portfolio profesional de Polinacodes. Desarrolladora web full stack enfocada en crear aplicaciones fluidas, seguras y de alto rendimiento, priorizando siempre el detalle visual y la experiencia de usuario." />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href={montserrat900} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={montserrat800} as="font" type="font/woff2" crossorigin />
     <title>{t("head.title")}</title>
   </head>
   
