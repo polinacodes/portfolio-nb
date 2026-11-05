@@ -14,6 +14,21 @@ const content = {
     siteBtn: "Sitio Web",
     projects: [
       {
+        id: "nailary",
+        title: "Nailary",
+        category: "App Web",
+        description: "Agenda online y sistema de turnos para manicuras y profesionales independientes. Los clientes reservan solos desde un link y cada turno aparece en el panel.",
+        longDescription: "Nailary es una aplicación web en producción para que manicuras y otras profesionales independientes administren sus turnos. Cada profesional crea su cuenta, carga sus servicios y horarios, y comparte un link de reservas donde los clientes eligen uno o varios servicios, día y horario sin necesidad de registrarse; la confirmación les llega por email. Desde el panel gestiona la agenda por día, semana o mes, carga los turnos que le piden por WhatsApp o en persona, consulta las fichas de clientes y define vacaciones, anticipación mínima y tiempo entre turnos. Desarrollé el frontend con React y TypeScript, y una API con Node.js y Express sobre PostgreSQL, con consultas SQL y migraciones versionadas, sin ORM. El principal desafío fue la disponibilidad: cada servicio puede tener opciones que cambian su precio y duración, y los horarios se calculan según el turno completo, los descansos, las vacaciones y los turnos ya tomados. Para que dos reservas simultáneas no ocupen el mismo horario, la disponibilidad se vuelve a validar dentro de una transacción con bloqueos de PostgreSQL, y las claves de idempotencia evitan envíos repetidos. También implementé autenticación propia con sesiones firmadas y contraseñas con scrypt, protección contra bots con Cloudflare Turnstile y límites de pedidos, emails con Resend, imágenes en Cloudflare R2, una landing prerenderizada para SEO y soporte para instalarla como PWA. Incluye tests unitarios y de integración contra una base PostgreSQL real.",
+        tags: ["REACT", "TYPESCRIPT", "NODE.JS", "EXPRESS", "POSTGRESQL"],
+        image: "/projects/nailary.webp",
+        gallery: ["/projects/nailary-1.webp", "/projects/nailary-2.webp", "/projects/nailary-3.webp", "/projects/nailary-4.webp", "/projects/nailary-5.webp", "/projects/nailary-6.webp", "/projects/nailary-7.webp", "/projects/nailary-8.webp"],
+        alt: "Vista previa de Nailary, agenda online y sistema de turnos",
+        align: "left",
+        bgColor: "bg-pastel-orange-soft",
+        hoverBtnClass: "hover:bg-pastel-orange-soft hover:text-black",
+        live: "https://nailary.app/"
+      },
+      {
         id: "glam-confessions",
         title: "Glam Confessions",
         category: "Ecommerce",
@@ -127,6 +142,21 @@ const content = {
     codeBtn: "Code",
     siteBtn: "Live Site",
     projects: [
+      {
+        id: "nailary",
+        title: "Nailary",
+        category: "Web App",
+        description: "Online scheduling and booking system for nail technicians and independent professionals. Clients book on their own from a link and every appointment shows up in the dashboard.",
+        longDescription: "Nailary is a web application in production that helps nail technicians and other independent professionals manage their appointments. Each professional creates an account, sets up services and business hours, and shares a booking link where clients choose one or more services, a day, and a time without signing up; the confirmation arrives by email. From the dashboard, professionals manage their calendar by day, week, or month, add appointments requested through WhatsApp or in person, check client records, and set time off, minimum notice, and time between appointments. I built the frontend with React and TypeScript, and an API with Node.js and Express on PostgreSQL, using SQL queries and versioned migrations, without an ORM. The main challenge was availability: each service can have options that change its price and duration, and time slots are calculated from the full appointment, breaks, time off, and existing bookings. To keep two simultaneous bookings from taking the same slot, availability is checked again inside a transaction with PostgreSQL locks, and idempotency keys prevent duplicate submissions. I also implemented custom authentication with signed sessions and scrypt password hashing, bot protection with Cloudflare Turnstile and rate limits, emails with Resend, image storage on Cloudflare R2, a prerendered landing page for SEO, and support for installing it as a PWA. It includes unit tests and integration tests against a real PostgreSQL database.",
+        tags: ["REACT", "TYPESCRIPT", "NODE.JS", "EXPRESS", "POSTGRESQL"],
+        image: "/projects/nailary.webp",
+        gallery: ["/projects/nailary-1.webp", "/projects/nailary-2.webp", "/projects/nailary-3.webp", "/projects/nailary-4.webp", "/projects/nailary-5.webp", "/projects/nailary-6.webp", "/projects/nailary-7.webp", "/projects/nailary-8.webp"],
+        alt: "Preview of Nailary, an online scheduling and booking system",
+        align: "left",
+        bgColor: "bg-pastel-orange-soft",
+        hoverBtnClass: "hover:bg-pastel-orange-soft hover:text-black",
+        live: "https://nailary.app/"
+      },
        {
         id: "glam-confessions",
         title: "Glam Confessions",
