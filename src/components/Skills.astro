@@ -24,6 +24,7 @@ import MysqlIcon from "../icons/Mysql.astro";
 import GitIcon from "../icons/Git.astro";
 import BashIcon from "../icons/Bash.astro";
 import WordPressIcon from "../icons/Wordpress.astro";
+import FigmaIcon from "../icons/Figma.astro";
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -35,7 +36,7 @@ const content = {
   },
   en: {
     title: "Skills",
-    subtitle: "My favorite tool stack.",
+    subtitle: "My stack of languages and tools.",
     learning: "Learning: UX/UI Design",
   },
 };
@@ -53,6 +54,7 @@ const frontSkills = [
   { name: "Tailwind", Icon: TailwindIcon },
   { name: "Bootstrap", Icon: BootstrapIcon },
   { name: "WordPress", Icon: WordPressIcon },
+  { name: "Figma", Icon: FigmaIcon },
 ];
 
 const backSkills = [

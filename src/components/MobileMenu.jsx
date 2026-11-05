@@ -33,7 +33,7 @@ export default function MobileMenu({ t, switchTarget, switchLabel }) {
             <button 
               onClick={toggleMenu} 
               className="absolute top-6 right-6 w-12 h-12 bg-[#FF8A8A] border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
-              aria-label="Cerrar menú"
+              aria-label={t.close}
             >
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 

@@ -1,6 +1,7 @@
 ---
 import GithubIcon from "../icons/GitHub.astro";
 import WebsiteIcon from "../icons/WebSite.astro";
+import { getLangFromUrl } from "../i18n/utils";
 
 interface Props {
   projects: any[];
@@ -9,11 +10,14 @@ interface Props {
 }
 
 const { projects, codeBtn, siteBtn } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const thumbLabel = lang === "en" ? "Thumbnail" : "Miniatura";
+const viewImageLabel = lang === "en" ? "View image" : "Ver imagen";
 ---
 
 <dialog
   id="project-modal"
-  class="backdrop:bg-black/80 backdrop:backdrop-blur-sm p-4 bg-transparent max-w-5xl 2xl:max-w-7xl w-full fixed inset-0 m-auto max-h-[95vh] overflow-y-auto md:overflow-visible focus:outline-none"
+  class="backdrop:bg-black/80 backdrop:backdrop-blur-sm p-4 bg-transparent max-w-5xl 2xl:max-w-7xl w-full fixed inset-0 m-auto max-h-[95vh] overflow-y-auto overscroll-contain md:overflow-visible focus:outline-none"
 >
   <div
     class="w-full bg-white border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative flex flex-col my-auto"
@@ -122,7 +126,7 @@ const { projects, codeBtn, siteBtn } = Astro.props;
   }
 </style>
 
-<script define:vars={{ projects }}>
+<script define:vars={{ projects, thumbLabel, viewImageLabel }}>
   const modal = document.getElementById("project-modal");
   const closeBtn = document.getElementById("close-modal-btn");
   const openButtons = document.querySelectorAll("[data-open-modal]");
@@ -135,6 +139,21 @@ const { projects, codeBtn, siteBtn } = Astro.props;
   const mTags = document.getElementById("modal-tags");
   const mCodeLink = document.getElementById("modal-code-link");
   const mLiveLink = document.getElementById("modal-live-link");
+
+  // Con el modal abierto la página de atrás no se mueve: al cerrarlo queda en el mismo punto.
+  function lockPageScroll() {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.overflow = "hidden";
+    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
+  }
+
+  function unlockPageScroll() {
+    document.documentElement.style.overflow = "";
+    document.body.style.paddingRight = "";
+  }
+
+  // "close" también se dispara al cerrar con Esc.
+  modal.addEventListener("close", unlockPageScroll);
 
   openButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -177,8 +196,8 @@ const { projects, codeBtn, siteBtn } = Astro.props;
 
           btn.className =
             "w-24 aspect-[16/9] border-2 border-transparent flex-shrink-0 relative transition-all duration-200 focus:outline-none";
-          btn.innerHTML = `<img src="${img}" class="w-full h-full object-cover" alt="Miniatura ${idx + 1}">`;
-          btn.setAttribute("aria-label", `Ver imagen ${idx + 1}`);
+          btn.innerHTML = `<img src="${img}" class="w-full h-full object-cover" alt="${thumbLabel} ${idx + 1}">`;
+          btn.setAttribute("aria-label", `${viewImageLabel} ${idx + 1}`);
 
           if (idx === 0) {
             btn.classList.add("opacity-100", "!border-black", "z-10");
@@ -214,6 +233,7 @@ const { projects, codeBtn, siteBtn } = Astro.props;
         mTags.appendChild(span);
       });
 
+      lockPageScroll();
       modal.showModal();
     });
   });

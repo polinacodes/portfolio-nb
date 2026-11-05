@@ -30,11 +30,11 @@ El código fuente se organiza de manera modular dentro del directorio `/src`:
 
 ## Configuración y Desarrollo Local
 
-Para clonar y ejecutar este proyecto localmente, asegúrese de tener instalado Node.js (versión 18 o superior).
+Para clonar y ejecutar este proyecto localmente, asegúrese de tener instalado Node.js (versión 22.12 o superior).
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/polinacodes/portfolio.git 
+   git clone https://github.com/polinacodes/portfolio-nb.git 
    ```
 
 2. Instalar las dependencias del proyecto:   
