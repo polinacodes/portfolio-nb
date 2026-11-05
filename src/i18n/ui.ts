@@ -13,7 +13,7 @@ export const languages = {
       'nav.close': 'Cerrar menú',
       'hero.desc': '+4 AÑOS DE EXPERIENCIA DESARROLLANDO SOLUCIONES WEB.',
       'hero.contact': 'CONTACTAME',
-      'hero.available': 'DISPONIBLE PARA PROYECTOS',
+      'hero.available': 'DISPONIBLE PARA TRABAJAR',
     },
     en: {
       'head.title': "Polinacodes' Portfolio | Full Stack Developer",  
@@ -24,6 +24,6 @@ export const languages = {
       'nav.close': 'Close menu',
       'hero.desc': '4+ YEARS OF EXPERIENCE DEVELOPING WEB SOLUTIONS.',
       'hero.contact': 'CONTACT ME',
-      'hero.available': 'AVAILABLE FOR PROJECTS',
+      'hero.available': 'OPEN TO WORK',
     },
   } as const;

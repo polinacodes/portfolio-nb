@@ -1,6 +1,7 @@
 ---
 import GithubIcon from "../icons/GitHub.astro";
 import WebsiteIcon from "../icons/WebSite.astro";
+import ArrowForward from "../icons/ArrowForward.astro";
 import { getLangFromUrl } from "../i18n/utils";
 
 interface Props {
@@ -13,6 +14,10 @@ const { projects, codeBtn, siteBtn } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const thumbLabel = lang === "en" ? "Thumbnail" : "Miniatura";
 const viewImageLabel = lang === "en" ? "View image" : "Ver imagen";
+const enlargeLabel = lang === "en" ? "Enlarge image" : "Ampliar imagen";
+const closeImageLabel = lang === "en" ? "Close image" : "Cerrar imagen";
+const previousLabel = lang === "en" ? "Previous image" : "Imagen anterior";
+const nextLabel = lang === "en" ? "Next image" : "Imagen siguiente";
 ---
 
 <dialog
@@ -34,8 +39,12 @@ const viewImageLabel = lang === "en" ? "View image" : "Ver imagen";
         class="md:col-span-6 p-6 border-b-4 md:border-b-0 md:border-r-4 border-black flex flex-col justify-between bg-zinc-50"
       >
         <div>
-          <div
-            class="w-full aspect-[16/9] bg-black border-4 border-black overflow-hidden mb-4 [transform:translateZ(0)] [backface-visibility:hidden]"
+          <button
+            id="modal-main-img-btn"
+            type="button"
+            aria-label={enlargeLabel}
+            title={enlargeLabel}
+            class="group/zoom relative block w-full aspect-[16/9] bg-black border-4 border-black overflow-hidden mb-4 [transform:translateZ(0)] [backface-visibility:hidden] focus:outline-none focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black"
           >
             <img
               id="modal-main-img"
@@ -43,7 +52,16 @@ const viewImageLabel = lang === "en" ? "View image" : "Ver imagen";
               alt=""
               class="w-full h-auto block [transform:translateZ(0)]"
             />
-          </div>
+            <span
+              aria-hidden="true"
+              class="absolute right-2 bottom-2 w-9 h-9 flex items-center justify-center bg-white text-black border-2 border-black shadow-brutal-mini transition-colors group-hover/zoom:bg-pastel-teal"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="m20 20-3.5-3.5M11 8v6M8 11h6"></path>
+              </svg>
+            </span>
+          </button>
 
           <div
             id="modal-thumbnails"
@@ -107,6 +125,57 @@ const viewImageLabel = lang === "en" ? "View image" : "Ver imagen";
   </div>
 </dialog>
 
+<dialog
+  id="image-lightbox"
+  class="backdrop:bg-black/90 bg-transparent p-0 m-0 w-screen h-[100dvh] max-w-none max-h-none overflow-hidden focus:outline-none"
+>
+  <div id="lightbox-stage" class="relative w-full h-full flex flex-col items-center gap-4 p-4 md:p-6 [@media(max-height:500px)]:p-2">
+    <div class="w-full flex justify-end flex-shrink-0 [@media(max-height:500px)]:absolute [@media(max-height:500px)]:top-2 [@media(max-height:500px)]:right-2 [@media(max-height:500px)]:w-auto [@media(max-height:500px)]:z-10">
+      <button
+        id="lightbox-close"
+        type="button"
+        aria-label={closeImageLabel}
+        class="bg-[#FF8A8A] text-black border-4 border-black font-['Montserrat'] font-black text-xl w-10 h-10 md:w-12 md:h-12 flex items-center justify-center hover:bg-red-500 transition-colors shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-1 active:translate-y-1 active:shadow-none"
+      >
+        ✕
+      </button>
+    </div>
+
+    <div id="lightbox-frame" class="flex-1 min-h-0 w-full flex items-center justify-center">
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="block max-w-full max-h-full w-auto h-auto bg-black border-4 border-black"
+      />
+    </div>
+
+    <div id="lightbox-controls" class="flex items-center gap-3 flex-shrink-0 [@media(max-height:500px)]:absolute [@media(max-height:500px)]:bottom-2 [@media(max-height:500px)]:right-2 [@media(max-height:500px)]:flex-col [@media(max-height:500px)]:z-10">
+      <button
+        id="lightbox-prev"
+        type="button"
+        aria-label={previousLabel}
+        class="w-11 h-11 flex items-center justify-center bg-white text-black border-4 border-black hover:bg-pastel-teal transition-colors"
+      >
+        <div class="w-5 h-5 rotate-180"><ArrowForward /></div>
+      </button>
+      <span
+        id="lightbox-counter"
+        aria-live="polite"
+        class="min-w-16 text-center bg-black text-white border-4 border-black px-3 py-2 font-['JetBrains_Mono'] text-xs font-bold"
+      ></span>
+      <button
+        id="lightbox-next"
+        type="button"
+        aria-label={nextLabel}
+        class="w-11 h-11 flex items-center justify-center bg-white text-black border-4 border-black hover:bg-pastel-teal transition-colors"
+      >
+        <div class="w-5 h-5"><ArrowForward /></div>
+      </button>
+    </div>
+  </div>
+</dialog>
+
 <style>
   .scrollbar-custom {
     scrollbar-color: #a7dbd8 #000000;
@@ -152,6 +221,53 @@ const viewImageLabel = lang === "en" ? "View image" : "Ver imagen";
     document.body.style.paddingRight = "";
   }
 
+  // Foto ampliada: se abre sobre el modal, que sigue abierto debajo.
+  const lightbox = document.getElementById("image-lightbox");
+  const lightboxStage = document.getElementById("lightbox-stage");
+  const lightboxFrame = document.getElementById("lightbox-frame");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxCounter = document.getElementById("lightbox-counter");
+  const lightboxControls = document.getElementById("lightbox-controls");
+  const mainImgBtn = document.getElementById("modal-main-img-btn");
+
+  let currentImages = [];
+  let currentIndex = 0;
+  let currentTitle = "";
+
+  function showLightboxImage() {
+    lightboxImg.src = currentImages[currentIndex];
+    lightboxImg.alt = `${currentTitle} ${currentIndex + 1}`;
+    lightboxCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+  }
+
+  // Cambia la foto y deja marcada la misma miniatura en el modal.
+  function moveLightbox(step) {
+    if (currentImages.length < 2) return;
+    currentIndex = (currentIndex + step + currentImages.length) % currentImages.length;
+    showLightboxImage();
+    mThumbnails.querySelectorAll("button")[currentIndex]?.click();
+  }
+
+  mainImgBtn.addEventListener("click", () => {
+    lightboxControls.style.display = currentImages.length > 1 ? "flex" : "none";
+    showLightboxImage();
+    lightbox.showModal();
+  });
+
+  document.getElementById("lightbox-close").onclick = () => lightbox.close();
+  document.getElementById("lightbox-prev").onclick = () => moveLightbox(-1);
+  document.getElementById("lightbox-next").onclick = () => moveLightbox(1);
+
+  // Click afuera de la foto: se cierra solo la foto.
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox || e.target === lightboxStage || e.target === lightboxFrame) lightbox.close();
+  });
+
+  lightbox.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") moveLightbox(-1);
+    if (e.key === "ArrowRight") moveLightbox(1);
+  });
+
   // "close" también se dispara al cerrar con Esc.
   modal.addEventListener("close", unlockPageScroll);
 
@@ -166,6 +282,9 @@ const viewImageLabel = lang === "en" ? "View image" : "Ver imagen";
       mCategory.textContent = project.category;
       mLongDesc.textContent = project.longDescription || project.description;
       mMainImg.src = project.gallery?.[0] || project.image;
+      currentImages = project.gallery?.length ? project.gallery : [project.image];
+      currentIndex = 0;
+      currentTitle = project.title;
 
       if (project.github) {
         mCodeLink.style.display = "flex";
@@ -207,6 +326,7 @@ const viewImageLabel = lang === "en" ? "View image" : "Ver imagen";
 
           const cambiarImagenActiva = () => {
             mMainImg.src = img;
+            currentIndex = idx;
             mThumbnails.querySelectorAll("button").forEach((b) => {
               b.classList.remove("opacity-100", "!border-black", "z-10");
               b.classList.add("opacity-50");
