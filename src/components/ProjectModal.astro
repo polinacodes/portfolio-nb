@@ -141,12 +141,13 @@ const nextLabel = lang === "en" ? "Next image" : "Imagen siguiente";
       </button>
     </div>
 
-    <div id="lightbox-frame" class="flex-1 min-h-0 w-full flex items-center justify-center">
+    <div id="lightbox-frame" class="flex-1 min-h-0 w-full flex items-center justify-center overflow-hidden touch-none">
       <img
         id="lightbox-img"
         src=""
         alt=""
-        class="block max-w-full max-h-full w-auto h-auto bg-black border-4 border-black"
+        draggable="false"
+        class="block max-w-full max-h-full w-auto h-auto bg-black border-4 border-black origin-top-left select-none cursor-zoom-in"
       />
     </div>
 
@@ -234,7 +235,144 @@ const nextLabel = lang === "en" ? "Next image" : "Imagen siguiente";
   let currentIndex = 0;
   let currentTitle = "";
 
+  // Zoom de la foto ampliada: ruedita, click, arrastrar y pellizcar en celular.
+  const MAX_ZOOM = 4;
+  const CLICK_ZOOM = 2.5;
+  let zoom = 1;
+  let panX = 0;
+  let panY = 0;
+  const pointers = new Map();
+  let drag = null;
+  let pinch = null;
+  let moved = false;
+
+  function applyZoom() {
+    const zoomed = zoom > 1;
+    lightboxImg.style.transform = zoomed ? `translate(${panX}px, ${panY}px) scale(${zoom})` : "";
+    // El borde se escala con la foto, así que mientras hay zoom se oculta.
+    lightboxImg.style.borderColor = zoomed ? "transparent" : "";
+    lightboxImg.style.backgroundClip = zoomed ? "content-box" : "";
+    lightboxImg.style.cursor = zoomed ? (drag ? "grabbing" : "grab") : "";
+  }
+
+  function resetZoom() {
+    zoom = 1;
+    panX = 0;
+    panY = 0;
+    drag = null;
+    pinch = null;
+    pointers.clear();
+    applyZoom();
+  }
+
+  // Posición de la foto sin zoom (el transform parte de la esquina superior izquierda).
+  function baseRect() {
+    const rect = lightboxImg.getBoundingClientRect();
+    return { left: rect.left - panX, top: rect.top - panY };
+  }
+
+  // Que la foto no se pueda arrastrar fuera del recuadro.
+  function clampPan(base) {
+    if (zoom <= 1) {
+      panX = 0;
+      panY = 0;
+      return;
+    }
+    const frame = lightboxFrame.getBoundingClientRect();
+    const clampAxis = (pan, start, size, frameStart, frameEnd) => {
+      if (size <= frameEnd - frameStart) return frameStart + (frameEnd - frameStart - size) / 2 - start;
+      return Math.min(frameStart, Math.max(frameEnd - size, start + pan)) - start;
+    };
+    panX = clampAxis(panX, base.left, lightboxImg.offsetWidth * zoom, frame.left, frame.right);
+    panY = clampAxis(panY, base.top, lightboxImg.offsetHeight * zoom, frame.top, frame.bottom);
+  }
+
+  // Hace zoom manteniendo fijo el punto de la foto que está bajo el cursor.
+  function zoomAt(clientX, clientY, nextZoom) {
+    nextZoom = Math.min(MAX_ZOOM, Math.max(1, nextZoom));
+    const base = baseRect();
+    const pointX = (clientX - base.left - panX) / zoom;
+    const pointY = (clientY - base.top - panY) / zoom;
+    panX = clientX - base.left - pointX * nextZoom;
+    panY = clientY - base.top - pointY * nextZoom;
+    zoom = nextZoom;
+    clampPan(base);
+    applyZoom();
+  }
+
+  function zoomAtCenter(nextZoom) {
+    const rect = lightboxFrame.getBoundingClientRect();
+    zoomAt(rect.left + rect.width / 2, rect.top + rect.height / 2, nextZoom);
+  }
+
+  lightboxFrame.addEventListener(
+    "wheel",
+    (e) => {
+      e.preventDefault();
+      const speed = e.deltaMode === 1 ? 0.05 : 0.002;
+      zoomAt(e.clientX, e.clientY, zoom * Math.exp(-e.deltaY * speed));
+    },
+    { passive: false }
+  );
+
+  const pinchDistance = () => {
+    const [a, b] = [...pointers.values()];
+    return Math.hypot(a.x - b.x, a.y - b.y);
+  };
+
+  lightboxImg.addEventListener("pointerdown", (e) => {
+    lightboxImg.setPointerCapture(e.pointerId);
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointers.size === 1) moved = false;
+    if (pointers.size === 2) {
+      drag = null;
+      pinch = { distance: pinchDistance(), zoom };
+    } else if (zoom > 1) {
+      drag = { x: e.clientX - panX, y: e.clientY - panY };
+    }
+    applyZoom();
+  });
+
+  lightboxImg.addEventListener("pointermove", (e) => {
+    const previous = pointers.get(e.pointerId);
+    if (!previous) return;
+    if (Math.hypot(e.clientX - previous.x, e.clientY - previous.y) > 3) moved = true;
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    if (pinch && pointers.size === 2) {
+      const [a, b] = [...pointers.values()];
+      zoomAt((a.x + b.x) / 2, (a.y + b.y) / 2, pinch.zoom * (pinchDistance() / pinch.distance));
+    } else if (drag) {
+      const base = baseRect();
+      panX = e.clientX - drag.x;
+      panY = e.clientY - drag.y;
+      clampPan(base);
+      drag = { x: e.clientX - panX, y: e.clientY - panY };
+      applyZoom();
+    }
+  });
+
+  function endPointer(e) {
+    pointers.delete(e.pointerId);
+    if (pointers.size < 2) pinch = null;
+    const [remaining] = [...pointers.values()];
+    drag = remaining && zoom > 1 ? { x: remaining.x - panX, y: remaining.y - panY } : null;
+    applyZoom();
+  }
+  lightboxImg.addEventListener("pointerup", endPointer);
+  lightboxImg.addEventListener("pointercancel", endPointer);
+
+  // Click sin arrastrar: acerca en ese punto, o vuelve al tamaño normal.
+  lightboxImg.addEventListener("click", (e) => {
+    if (moved) return;
+    zoomAt(e.clientX, e.clientY, zoom > 1 ? 1 : CLICK_ZOOM);
+  });
+
+  window.addEventListener("resize", resetZoom);
+  lightbox.addEventListener("close", resetZoom);
+
   function showLightboxImage() {
+    resetZoom();
     lightboxImg.src = currentImages[currentIndex];
     lightboxImg.alt = `${currentTitle} ${currentIndex + 1}`;
     lightboxCounter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
@@ -266,6 +404,9 @@ const nextLabel = lang === "en" ? "Next image" : "Imagen siguiente";
   lightbox.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") moveLightbox(-1);
     if (e.key === "ArrowRight") moveLightbox(1);
+    if (e.key === "+" || e.key === "=") zoomAtCenter(zoom * 1.5);
+    if (e.key === "-") zoomAtCenter(zoom / 1.5);
+    if (e.key === "0") resetZoom();
   });
 
   // "close" también se dispara al cerrar con Esc.
